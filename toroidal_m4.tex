@@ -103,9 +103,17 @@
 
 %%%%%%%%%%%%%%%%%%%%%%         Defintions        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\on}{\operatorname}
+\newcommand{\ol}{\overline}
+\newcommand{\nc}{\newcommand}
+\nc{\wt}{\widetilde}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Symbols %%%%%%%%%%%%%%%%%%%
+
+
 %\newcommand{\CC}{\mathbb{C}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathcal{R}}
+\newcommand{\R}{R}
+\nc{\cR}{\mathcal{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Etau}{{\text{E}_\tau}}
@@ -149,13 +157,10 @@
 
 
 
-\newcommand{\ol}{\overline}
-\newcommand{\nc}{\newcommand}
-\nc{\wt}{\widetilde}
 \nc{\CEcoh}{\mathcal{C}^{*}}
 
 
-
+%%%%%%%%%%%%% Lie algebras
 \nc{\h}{\mathfrak{h}}
 \nc{\g}{\mathfrak{g}}
 \nc{\ghat}{\widehat{\g}}
@@ -163,6 +168,10 @@
 \nc{\F}{\mc{F}}
 \nc{\C}{\mathbb{C}}
 \nc{\bfC}{\C}
+\nc{\Linf}{L_{\infty}}
+
+
+
 \nc{\delbar}{\overline{\partial}}
 \nc{\del}{\partial}
 
@@ -239,7 +248,7 @@ Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorp
 \end{abstract}
 
 
-%\tableofcontents
+\tableofcontents
 
 
 \section{Introduction}
@@ -273,33 +282,37 @@ In the case that $Y = X$ is a Riemann surface and $\pi$ is the identity, the ext
 
 
 \section{Preliminaries}
-\subsection{Lie algebras and universal central extensions}
+\subsection{Lie algebras, $\Linf$ algebras, and central extensions}
 
 
-
-Given a complex Lie algebra $\g$ with invariant bilinear form $\ip$, and a $\C$-algebra $\R$, $ \g_{\R} := \g \otimes \R$ carries a natural Lie algebra structure with bracket
+Given a complex Lie algebra $\g$ with invariant bilinear form $\ip$, and a $\C$-algebra $\R$, $ \g_{\R} := \g \otimes_{\C} \R$ carries a natural Lie algebra structure with bracket
 \[
 [X \otimes r, Y \otimes s] = [X,Y] \otimes rs.
 \]
-The universal central extension $\ghat_{\R}$ of $\g_{\R}$ fits into a short exact sequence
-\[
-\ses{\Omega^1_{\R} / \d \R}{\ghat_{\R}}{\g_{\R}}
-\]
-where $\Omega^1_{\R}$ denotes the K\"{a}hler differentials of $\R/\C$ and $\d: \R \rightarrow \Omega^{1}_{\R}$ is the universal derivation. The bracket on $\ghat_{\R}$ is given by 
+By a result of Kassel ~\cite{Kassel}, the universal central extension $\ghat_{\R}$ of $\g_{\R}$ can be described as follows. As an $\R$ (or $\C$)--module, it is given by
+\begin{equation} \label{uce}
+\ghat_{\R} := \g_{\R} \oplus \Omega^1_{\R} / \d \R
+\end{equation}
+where $\Omega^1_{\R}$ denotes the K\"{a}hler differentials of $\R/\C$ and $\d: \R \rightarrow \Omega^{1}_{\R}$ is the universal derivation, and bracket
 \[
 [X \otimes r, Y \otimes s] =  [X,Y] \otimes rs + \overline{\langle X, Y \rangle s dr}
 \]
-where the second term lands in the quotient $\Omega^1_{\R} / \d \R$. 
+where the second term lands in the quotient $\Omega^1_{\R} / \d \R$. We have an exact sequence of $\R$--modules
+\[
+\ses{\Omega^1_{\R} / \d \R}{\ghat_{\R}}{\g_{\R}}
+\]
 
 \begin{eg}
 
 An important class of examples is obtained by taking
 \[
-\R= \R_n := \C[w^{\pm 1}_0, \cdots, w^{\pm -1}_n]
+\R= \cR_n := \C[w^{\pm 1}_0, \cdots, w^{\pm -1}_n]
 \]
 to be the algebra of functions on the complex $n+1$--dimensional torus $(\C^{\times})^{n+1}$. $\ghat_{\R_n}$ is called the $n+1$--toroidal Lie algebra for $n >0$ and an affine Kac-Moody algebra for $n=0$. 
 
 \end{eg}
+
+\matt{Something about $\Linf$ algebras, maybe in an appendix ?}
 
 We may resolve $\ghat_{\R}$ by an $L_{\infty}$ algebra $\gtil_{\R}$ as follows. Let 
 \[
@@ -321,7 +334,7 @@ One readily checks that $d \phi^{0} + \d_{CE} \phi^{(1)} = 0 $ and $\d_{CE} \phi
 \end{proof}
 
 {\color{red} SIGNS !}
-We may now use $\phi$ to define an $L_{\infty}$ central extension $\gtil_{\R}$ of $\g_{\R}$. As an $\R$-module, $ \gtil_{\R} = \K \oplus \g_{\R} $, and Taylor coefficients $l_1 = d, l_2 = [,] + \phi^{(1)}$, and $l_3 = \phi^{(0)}$. The following is immediate:
+We may now use $\phi$ to define an $L_{\infty}$ central extension $\gtil_{\R}$ of $\g_{\R}$. As an $\R$-module, $ \gtil_{\R} = \K_{\R} \oplus \g_{\R} $, and Taylor coefficients $l_1 = d, l_2 = [,] + \phi^{(1)}$, and $l_3 = \phi^{(0)}$. The following is immediate:
 
 \begin{prop}
 $H^{*}(\gtil_{\R}, l_1) = \ghat_{\R}$
@@ -329,13 +342,13 @@ $H^{*}(\gtil_{\R}, l_1) = \ghat_{\R}$
 
 \subsection{Vertex algebras}
 
-We proceed to briefly recall the basics of vertex algebras and discuss an important class of examples, which will later be constructed geometrically via factorization algebras. We refer the reader to \cite{FBZ, Kac} for details. 
+We proceed to briefly recall the basics of vertex algebras and discuss an important class of examples, which will later be constructed geometrically via factorization algebras. We refer the reader to ~\cite{FBZ, Kac} for details. 
 
 \begin{dfn}
-A vertex algebra is a vector
-space $V$ over the field $\bfC$ along with the following data:
+A vertex algebra $(V,\vac, T, Y)$ is a complex vector
+space $V$ along with the following data:
 \begin{itemize}
-\item A vacuum vector $|0\> \in V$.
+\item A vacuum vector $\vac \in V$.
 \item A linear map $T : V \to V$ (the translation operator).
 \item A linear map $Y(-,z) : V \to {\rm End}(V)\llbracket z^{\pm 1}
   \rrbracket$ (the vertex operator). We write $Y(v,z) = \sum_{n \in \mathbb{Z}} A_n^v z^{-n}$
@@ -346,11 +359,11 @@ satisfying the following axioms:
 \item For all $v,v' \in V$ there exists an $N \gg 0$ such that $A_n^v
   v' = 0$ for all $n > N$. (This says that $Y(v,z)$ is a {\it field}
   for all $v$). 
-\item (vacuum axiom) $Y(| 0 \>, z) = {\rm id}_V$ and
+\item (vacuum axiom) $Y(\vac, z) = {\rm id}_V$ and
     $Y(v,z)  |0\> \in v + z V \llbracket z \rrbracket$ for all
     $v \in V$. 
 \item (translation) $[T,Y(v,z)] = \partial_z Y(v,z)$ for all $v \in
-  V$. Moreover $T$ kills the vacuum. 
+  V$. Moreover $T \vac = 0$. 
 \item (locality) For all $v,v' \in V$, there exists $N \gg 0$ such
   that 
 \[
@@ -360,38 +373,41 @@ in ${\rm End}(V) \llbracket z^{\pm 1},w^{\pm 1}\rrbracket$.
 \end{itemize}
 \end{dfn}
 
-We will utilize a reconstruction theorem for vertex
-algebras. It says that a vertex algebra is completely and uniquely determined by a
-countable set of vectors, together with a set of fields of the same
-cardinality and a translation operator subject to a list
-of axioms. 
 
-\begin{theorem}[Theorem 2.3.11 of \cite{FBZ}] Let $V$ be a complex vector space equipped with: an
-  element $|0 \> \in V$, a linear map $T : V \to V$, a countable
-    set of vectors $\{a^s\}_{s \in S} \subset V$, and fields $A^s(z) =
+In order to prove that a given $(V,\vac,T,Y)$ forms a vertex algebra, the following "reconstruction" or "extension" theorem is very useful. It shows that any collection of local fields generates a vertex algebra in a suitable sense. 
+
+\matt{we should throw in some references to Li and friends, since this theorem has been "discovered" in a number of different papers}
+
+\begin{theorem}[~\cite{FBZ}, ~\cite{DSK}] \label{rec_thm} Let $V$ be a complex vector space equipped with: an
+  element $\vac \in V$, a linear map $T : V \to V$, a 
+    set of vectors $\{a^s\}_{s \in S} \subset V$ indexed by a set $S$, and fields $A^s(z) =
     \sum_{n \in \mathbb{Z}} A_n^sz^{-n-1}$ for each $s\in S$ such that:
 \begin{itemize}
-\item For all $s \in S$, $A^s(z) |0\> \in a^s + z V\llbracket
+\item For all $s \in S$, $A^s(z) \vac \in a^s + z V\llbracket
     z\rrbracket$;
-\item $T |0\> = 0$ and $[T,A^s(z)] = \partial_z A^s(z)$;
+\item $T \vac = 0$ and $[T,A^s(z)] = \partial_z A^s(z)$;
 \item $A^s(z)$ are mutually local;
 \item and $V$ is spanned by $\{A_{j_1}^{s_1} \cdots A_{j_m}^{s_m}
   |0\>\}$ as the $j_i's$ range over negative integers. 
 \end{itemize}
-Then, the data $(V,|0\>, T,Y)$ defines a unique vertex algebra satisfying 
+Then, the data $(V,\vac, T,Y)$ defines a unique vertex algebra satisfying 
 \[
 Y(a^s,z) = A^s(z) .
 \]
 \end{theorem}
 
+\begin{rmk}
+The version stated above appears in ~\cite{DSK}, and is slightly more general than the version stated in ~\cite{FBZ}. 
+\end{rmk}
+
 \subsection{The vertex algebras $V_{k}(\g)$ and $V(\ghat_{\R})$}
 
-We begin by reviewing the construction of vertex algebra structures on vacuum representations of the affine Kac-Moody algebra $\ghat$.  
+Many vertex algebras are constructed from vacuum representations of affine Lie algebras and their generalizations. We proceed to review the vertex algebra structure on the affine Kac-Moody vacuum module $V_{k}(\g)$ and extend the construction to vacuum representations of $\ghat_{R}$, where $R=A[t,t^{-1}]$ for some $\C$-algebra $A$.
 
 \subsubsection{$V_{k}(\g)$}
 Let $\ghat = \g[t,t^{-1}] \oplus \C k$ be the affine Kac-Moody algebra, $\ghat^{+} = \g[t] \oplus \C k$ denote the positive sub-algebra, and $\C[k]$ denote the representation of $\ghat^{+}$ on which $\g[t]$ acts by $0$ and $k$ acts by multiplication. For $J \in \g$, denote $J \otimes t^n$ by $J_n$, and $1 \in \C[k]$ by $\vac$
 
-It is well-known (see for instance \cite{FBZ}) that the induced vacuum representation
+It is well-known (see for instance ~\cite{FBZ}) that the induced vacuum representation
 \[
 V_{\lambda}(\g) := \on{Ind}^{\ghat}_{\ghat^+} \C[k]
 \] 
@@ -418,7 +434,8 @@ T \vac =0, [T, J^i_n] = -n J^{i}_{n-1}.
 The vertex algebra structure on $V_{k}(\g)$ may be generalized to vacuum representations of $\ghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \C[t,t^{-1}]$ for some $\C$--algebra $A$. 
 
 
-Let $A$ be a $\C$-algebra, $\R=A[t,t^{-1}] := A \otimes \C[t,t^{-1}]$, and $\ghat_{\R}$ the Lie algebra from section \ref{?}. We will assume that $A$ has a countable $\mathbb{C}$-basis $\{ f^r \}_{r \in \mathbb{N}}$, and so $\{ f^r t^s \}_{r \in \mathbb{N}, s \in \mathbb{Z}} $ is a countable basis for $A[t,t^{-1}]$. 
+Let $A$ be a $\C$-algebra, $\R=A[t,t^{-1}] := A \otimes \C[t,t^{-1}]$, and $\ghat_{\R}$ the Lie algebra (\ref{uce}). 
+%We will assume that $A$ has a countable $\mathbb{C}$-basis $\{ f^r \}_{r \in \mathbb{N}}$, and so $\{ f^r t^s \}_{r \in \mathbb{N}, s \in \mathbb{Z}} $ is a countable basis for $A[t,t^{-1}]$. 
 % If $J \in \g$, we denote by $J_n f^r$ the element $J \otimes f^r t^{n} \in \g \otimes A[t,t^{-1}]$. 
 There is a natural injection
 \[
@@ -455,7 +472,14 @@ The above field assignments, together with $T$ equip $V(\ghat_{\R})$ with the st
 \end{theorem}
 
 \begin{proof}
-blah blah
+We begin by checking that the field assignment above is well-defined. This amounts to verifying that $Y(d(t^{-1}f)\vac,z ) =0$.  We have 
+\begin{align*}
+Y(d(t^{-1}f) \vac, z) &= Y(t^{-1} df \vac, z) - Y(f t^{-2} f \vac, z) \\
+&= Y(t{-1} df \vac, z) - Y([T, t^{-1}f dt  ] \vac, z) \\
+&= Y(t^{-1} df \vac, z) - \partial_z Y( t^{-1} f dt \vac, z) \\
+&= \sum_{n} (t^n df + n t^{n-1} f) z^{-n-1} = \sum_{n} d(t^n f) z^{-n-1} = 0
+\end{align*}
+The result now follows by applying the reconstruction theorem \ref{rec_thm} to $V(\ghat_\R)$ and the fields $\{ J_f (z), K_{f \frac{dt}{t}}, K_{t^{-1} \omega} \}$ for $f \in A, \omega \in \Omega^{1}_A $.
 \end{proof}
 
 \subsection{(Pre)-factorization algebras}
@@ -576,10 +600,12 @@ is an equivalence for all Weiss covers $\scr{U}$ of $U$.
 \item {\color{red} holo-translation invariant fact algebras}
 \end{enumerate}
 
-\subsection{Local Lie algebras and factorization envelopes}
+\subsection{Factorization Lie algebras and factorization envelopes}
 
 \begin{enumerate}
-\item Local L-infinity algebras and pro-versions
+\item Factorization Lie algebras
+\item Compactly supported sections of a local Lie algebra is a factorization Lie algebra
+\item Pushforward of local Lie algebra is a factorization Lie algebra
 \item factorization envelopes as examples of factorization algebras
 \item relations with vertex algebras in one dimension. 
 \end{enumerate}
@@ -677,6 +703,8 @@ $\F_{X,E}$ has the structure of a holomorphically translation-invariant factoriz
 \item Compute factorization homology for compact base and tirivial/non-trivial torus bundle
 \end{enumerate}
 }
+
+\newpage
 
 \bibliographystyle{alpha}
 %\bibliographystyle{spmpsci}  
