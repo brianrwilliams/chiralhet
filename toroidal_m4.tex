@@ -118,6 +118,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Etau}{{\text{E}_\tau}}
 \newcommand{\E}{{\mathcal E}}
+\nc{\U}{\mathbf{U}}
 %\newcommand{\F}{\mathbf{F}}
 %\newcommand{\G}{\mathbf{G}}
 \newcommand{\eps}{\epsilon}
@@ -169,11 +170,13 @@
 \nc{\C}{\mathbb{C}}
 \nc{\bfC}{\C}
 \nc{\Linf}{L_{\infty}}
+\nc{\cL}{\mc{L}}
 
 
 
 \nc{\delbar}{\overline{\partial}}
 \nc{\del}{\partial}
+\nc{\dd}{d}
 
 \nc{\vac}{|0\rangle}
 
@@ -186,6 +189,7 @@
 
 \nc{\symcat}{\on{\bf C}^{\otimes}}
 \nc{\Fcal}{\mathcal{F}}
+\nc{\sF}{\mc{F}}
 
 \nc{\Vect}{\on{Vect}}
 \nc{\dgVect}{\on{dg-Vect}}
@@ -281,7 +285,7 @@ To such data we will associate an extension of local Lie algebras \brian{??}.
 In the case that $Y = X$ is a Riemann surface and $\pi$ is the identity, the extension of local Lie algebras is modest enhancement of the usual affine algebra.
 
 
-\section{Preliminaries}
+\section{Lie algebras and vertex algebras}
 \subsection{Lie algebras, $\Linf$ algebras, and central extensions}
 
 
@@ -482,7 +486,7 @@ Y(d(t^{-1}f) \vac, z) &= Y(t^{-1} df \vac, z) - Y(f t^{-2} f \vac, z) \\
 The result now follows by applying the reconstruction theorem \ref{rec_thm} to $V(\ghat_\R)$ and the fields $\{ J_f (z), K_{f \frac{dt}{t}}, K_{t^{-1} \omega} \}$ for $f \in A, \omega \in \Omega^{1}_A $.
 \end{proof}
 
-\subsection{(Pre)-factorization algebras}
+\section{(Pre)-factorization algebras and examples}
 
 In this section we briefly recall basic notions pertaining to pre-factorization algebras and their relationship with vertex algebras. We refer the reader to \cite{CG} for details. Our summary closely follows the presentation given in \cite{} {\color{red} Owen-Kasia}. 
 
@@ -595,12 +599,13 @@ condition is that the natural map
 \]
 is an equivalence for all Weiss covers $\scr{U}$ of $U$. 
 
-\begin{enumerate}
-\item {\color{red} translation-invariant fact algebras}
-\item {\color{red} holo-translation invariant fact algebras}
-\end{enumerate}
-
 \subsection{Factorization Lie algebras and factorization envelopes}
+
+An important class of examples of (pre)factorization algebras is given by the \emph{factorization envelope} construction, which we proceed to review in this section.
+
+Let $\cL$ be a fine sheaf of Lie algebras on $M$. 
+
+\matt{explain factorization envelopes}
 
 \begin{enumerate}
 \item Factorization Lie algebras
@@ -609,6 +614,131 @@ is an equivalence for all Weiss covers $\scr{U}$ of $U$.
 \item factorization envelopes as examples of factorization algebras
 \item relations with vertex algebras in one dimension. 
 \end{enumerate}
+
+
+
+\subsection{Translation-invariant (pre)factorization algebras}
+
+Suppose now that $\sF$ is prefactorization algebra on $\mathbb{R}^n$ n the appropriate category of
+differentiable vector spaces. \footnote{Some care is needed to
+  define this category correctly. We refer the interested reader to
+  \cite{CG}}. $\mathbb{R}^n$ acts on itself by translations. For an open subset $U \subset \mathbb{R}^n$ and $x \in \mathbb{R}^n$, let 
+\[
+\tau_x U := \{ y \in \mathbb{R}^n \vert y-x \in U \}
+\]
+Clearly, $\tau_x (\tau_y U) = \tau_{x+y} U$. We say that $\sF$ is \emph{translation-invariant} if we are given isomorphisms
+\[
+\phi_x : \sF(U) \rightarrow \sF(\tau_x U)
+\]
+for each $x \in \mathbb{R}^n$ compatible with composition and the structure maps of $\sF$. We refer to section 4.8 of  \cite{CG} for details. 
+
+\begin{eg}
+For any Lie algebra $\g$, the factorization envelope $\U(\g \otimes \Omega^*_{\mathbb{R}^n})$ of section ?? is translation-invariant. 
+\end{eg}
+
+If $\sF$ is a
+prefactorization algebra on $\bfC^n$, we can further refine the notion of translation-invariance. 
+We say that $\sF$ is {\it holomorphically translation invariant}
+if
+\begin{itemize}
+\item $\sF$ is translation invariant. 
+\item There exists a degree $-1$ derivation $\eta: \sF \to
+  \sF$ such that $\dd \eta = \partial_{\Bar{z}}$ as derivations of
+  $\sF$. 
+\end{itemize}
+
+This condition means that anti-holomorphic vector fields act homotopically trivially on $\sF$. 
+
+\begin{eg}
+For any Lie algebra $\g$, the holomorphic factorization envelope $\U(\g \otimes \Omega^{0,*}_{\C^n})$ is holomorphically translation-invariant, with \matt{elaborate what $\eta$ is here}.
+\end{eg}
+
+
+\subsection{$S^1$-equivariant factorization algebras on $\C$ and vertex algebras}
+
+In order to build a bridge between the world of prefactorization algebras on $\C$ and vertex algebras, we will need to consider prefactorization algebras possessing a type of $S^1$-equivariance, which we proceed to review. 
+
+The last piece of data we need corresponds to the ``conformal
+decomposition'' of a vetex algebra. For us, this will come from an
+$S^1$-action on $\sF$. The reader is encouraged to look at
+\cite{CG} for a precise definition, but we assume that we have a {\it
+  nice} action of $S^1$ on $\sF$ and it is compatible with the
+translation invariance discussed above. 
+
+We can now read off the data of the
+vertex algebra from $\sF$:
+
+\begin{itemize}
+\item Let $\sF^{(l)}(r) \subset \sF(r)$ be the $l$th eigenspace for the $S^1$-action. The underlying vector
+space for the vertex algebra is
+\[
+V := \bigoplus_l {\rm H}^*(\sF^{(l)}(r)) .
+\]
+\item The translation operator. The action of $\partial_z$ on $\sF^{(l)}(r)$ has the form
+\[
+\partial_z : \sF^{(l)}(r) \to 
+\sF^{(l-1)}(r) .
+\]
+We let $T : V \to V$ be the operator which is $\partial_z$ restricted
+to the $l$-th eigenspace. 
+\item The fields. Consider the map
+\[
+\mu_{z,0} : \left(\lim_{r \to 0} {\rm
+    H}^*(\sF(r))\right)^{\tensor 2} \to {\rm Hol}\left({\rm
+  Conf}_2(\bfC), {\rm H}^*(\sF(\bfC))\right)
+\]
+defined above. Certainly, we have a map $V
+  \to \lim_{r \to 0} {\rm
+    H}^*(\sF(r))$, so it makes sense to resctict $\mu_{z,0}$ to a
+  map 
+\[
+V \tensor V \to {\rm Hol}\left({\rm Conf}_2(\bfC), {\rm
+    H}^*(\sF(\bfC))\right) \simeq {\rm Hol}\left(\bfC^\times, {\rm
+    H}^*(\sF(\bfC))\right) .
+\]
+Post composing this with the projection maps $H^*(\sF(\infty)) \to
+V_l$ combine to define the map
+\[
+\Bar{\mu}_{z,0} : V \tensor V \to \prod_l {\rm Hol}(\bfC^\times, V_l)
+\]
+We can perform Laurent expansions to view this as
+\[
+\Bar{\mu}_{z,0} : V \tensor V \to \Bar{V} \llbracket z^{\pm 1}
+\rrbracket .
+\]
+We define $Y(-,z) : V \to {\rm End}(V)\llbracket z^{\pm 1}\rrbracket$ by
+\[
+Y(v,z) v' \; := \; \Bar{\mu}_{z,0}(v,v') .
+\]
+One can show that this actually lies in $V((z))$ for all $v,v'$. 
+\end{itemize}
+
+The above can be made much more precise and made into the following
+theorem. 
+
+\begin{theorem}[Theorem 5.2.2.1 \cite{CG1}] \label{fv} Let $\sF$ be a $S^1$-equivariant holomorphically translation invariant factorization algebra on $\bfC$. Suppose
+\begin{itemize}
+\item The action of $S^1$ on $\sF(r)$ extends smoothly to an action of the algebra of distributions on $S^1$. 
+\item For $r < r'$ the map 
+\[
+\sF^{(l)}(r) \to \sF^{(l)}(r')
+\]
+is a quasi-isomorphism.
+\item The cohomology ${\rm H}^*(\sF^{(l)}(r))$ vanishes for $l \gg 0$.
+\item For each $l$ and $r > 0$ we require that ${\rm H}^*(\sF^{(l)}(r))$ is isomorphic to a countable sequential colimit of finite dimensional vector spaces. 
+\end{itemize}
+Then $\mathbb{V}{\rm ert} (\sF) := \oplus_l {\rm H}^*(\sF^{(l)}(r))$ (which is independent of $r$ by assumption) has the structure of a vertex algebra.
+\end{theorem}
+
+Let ${\rm PreFact}_\bfC$ denote the category of prefactorization
+algebras on $\bfC$. Let ${\rm PreFact}^{\rm hol}_\bfC \subset {\rm
+  PreFact}_\bfC$ be the full subcategory spanned by prefactorization
+algebras satisfying the conditions of the above theorem. This result
+can be upgraded to provide a functor
+\[
+\mathbb{V}{\rm ert} : {\rm PreFact}^{\rm hol}_\bfC \to {\rm Vert}
+\]
+where ${\rm Vert}$ is the category of vertex algebras. 
 
 \section{Factorization algebras from holomorphic fibrations}
 
