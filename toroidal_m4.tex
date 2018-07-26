@@ -162,13 +162,12 @@
 
 
 %%%%%%%%%%%%% Lie algebras
-\nc{\h}{\mathfrak{h}}
-\nc{\g}{\mathfrak{g}}
-\nc{\ghat}{\widehat{\g}}
-\nc{\n}{\mathfrak{n}}
-\nc{\F}{\mc{F}}
-\nc{\C}{\mathbb{C}}
-\nc{\bfC}{\C}
+\nc{\fh}{\mathfrak{h}}
+\nc{\fg}{\mathfrak{g}}
+\nc{\fghat}{\widehat{\fg}}
+\nc{\fn}{\mathfrak{n}}
+\nc{\cF}{\mc{F}}
+\nc{\CC}{\mathbb{C}}
 \nc{\Linf}{L_{\infty}}
 \nc{\cL}{\mc{L}}
 
@@ -180,10 +179,10 @@
 
 \nc{\vac}{|0\rangle}
 
-\nc{\K}{\mc{K}}
+\nc{\cK}{\mc{K}}
 \nc{\opqm}[2]{\Omega^{#1,#2}_{m}}
-\nc{\gtil}{\wt{\g}}
-\nc{\CC}{\mathcal{C}_{*}}
+\nc{\fgtil}{\wt{\fg}}
+%\nc{\CC}{\mathcal{C}_{*}}
 \nc{\Sym}{\on{Sym}}
 \nc{\dzbar}{d \overline{z}}
 
@@ -228,7 +227,7 @@
 \def\d{{\rm d}}
 \def\tensor{\otimes}
 \def\Hat{\widehat}
-\def\fg{\mathfrak{g}}
+\def\xto{\xrightarrow}
 
 
 \def\brian{\textcolor{blue}{BW: }\textcolor{blue}}
@@ -248,7 +247,7 @@
   \maketitle
 
 \begin{abstract}
-Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorphic fibration with fiber $F$, and $(\g, \ip )$ a Lie algebra with an invariant symmetric form. We show how to associate to this data a holomorphic factorization algebra  $\F_{Y/X}(\g)$ on $X$ in the formalism of Costello-Gwilliam via a type of pushforward operation. When $X=\mathbb{C}$, this construction produces a vertex algebra which is a vacuum module for the universal central extension of $\g \otimes H^{0}(F, \mc{O})[z,z^{-1}]$. In particular,  when $F$ is a torus $(\C^{*})^n$, we recover a vertex algebra naturally associated to an $n+1$--toroidal algebra. We give an explicit description of the chiral homology of $\F_{Y/X}(\g)$.
+Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorphic fibration with fiber $F$, and $(\fg, \ip )$ a Lie algebra with an invariant symmetric form. We show how to associate to this data a holomorphic factorization algebra  $\cF_{Y/X}(\fg)$ on $X$ in the formalism of Costello-Gwilliam via a type of pushforward operation. When $X=\mathbb{C}$, this construction produces a vertex algebra which is a vacuum module for the universal central extension of $\fg \otimes H^{0}(F, \mc{O})[z,z^{-1}]$. In particular,  when $F$ is a torus $(\CC^{*})^n$, we recover a vertex algebra naturally associated to an $n+1$--toroidal algebra. We give an explicit description of the chiral homology of $\cF_{Y/X}(\fg)$.
 \end{abstract}
 
 
@@ -257,14 +256,14 @@ Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorp
 
 \section{Introduction}
 
-Suppose $\g$ is a Lie algebra. 
-By definition, a universal central extension of $\g$ is a central extension of $\g$ such that all other central extensions are pulled back from it. 
+Suppose $\fg$ is a Lie algebra. 
+By definition, a universal central extension of $\fg$ is a central extension of $\fg$ such that all other central extensions are pulled back from it. 
 Universal central extensions are unique if they exist. 
-As an example, consider the (infinite dimensional) Lie algebra $\g[z,z^{-1}] = \g \tensor \mathbb{C}[z,z^{-1}]$ where $\g$ is a complex simple Lie algebra. 
-Here, $\mathbb{C}[z,z^{-1}]$ is the commutative algebra of Laurent polynomials and the resulting Lie algebra $\g[z,z^{-1}]$ is known as the {\em loop algebra} of $\g$. . 
-In \cite{Garland} \brian{is this reference correct?} it is shown that there exists a universal central extension of $\g[z,z^{-1}]$ of the form
+As an example, consider the (infinite dimensional) Lie algebra $\fg[z,z^{-1}] = \fg \tensor \mathbb{C}[z,z^{-1}]$ where $\fg$ is a complex simple Lie algebra. 
+Here, $\mathbb{C}[z,z^{-1}]$ is the commutative algebra of Laurent polynomials and the resulting Lie algebra $\fg[z,z^{-1}]$ is known as the {\em loop algebra} of $\fg$. . 
+In \cite{Garland} \brian{is this reference correct?} it is shown that there exists a universal central extension of $\fg[z,z^{-1}]$ of the form
 \[
-\mathbb{C} \to \Hat{\g} \to \g[z,z^{-1}] .
+\mathbb{C} \to \Hat{\fg} \to \fg[z,z^{-1}] .
 \]
 These extensions are known as {\em affine algebras} and are \brian{...}.
 
@@ -289,60 +288,110 @@ In the case that $Y = X$ is a Riemann surface and $\pi$ is the identity, the ext
 \subsection{Lie algebras, $\Linf$ algebras, and central extensions}
 
 
-Given a complex Lie algebra $\g$ with invariant bilinear form $\ip$, and a $\C$-algebra $\R$, $ \g_{\R} := \g \otimes_{\C} \R$ carries a natural Lie algebra structure with bracket
+Given a complex Lie algebra $\fg$ with invariant bilinear form $\ip$, and a $\CC$-algebra $R$, $ \fg_{R} := \fg \otimes_{\CC} R$ carries a natural Lie algebra structure with bracket
 \[
 [X \otimes r, Y \otimes s] = [X,Y] \otimes rs.
 \]
-By a result of Kassel ~\cite{Kassel}, the universal central extension $\ghat_{\R}$ of $\g_{\R}$ can be described as follows. As an $\R$ (or $\C$)--module, it is given by
+By a result of Kassel ~\cite{Kassel}, the universal central extension $\fghat_{R}$ of $\fg_{R}$ can be described as follows. As an $R$-module, it is given by
 \begin{equation} \label{uce}
-\ghat_{\R} := \g_{\R} \oplus \Omega^1_{\R} / \d \R
+\fghat_{R} := \fg_{R} \oplus \Omega^1_{R} / \d R ,
 \end{equation}
-where $\Omega^1_{\R}$ denotes the K\"{a}hler differentials of $\R/\C$ and $\d: \R \rightarrow \Omega^{1}_{\R}$ is the universal derivation, and bracket
+where $\Omega^1_{R}$ denotes the K\"{a}hler differentials of $R/\CC$ and $\d: R \rightarrow \Omega^{1}_{R}$ is the universal derivation.
+The Lie bracket is defined by
 \[
-[X \otimes r, Y \otimes s] =  [X,Y] \otimes rs + \overline{\langle X, Y \rangle s dr}
+[X \otimes r, Y \otimes s] =  [X,Y] \otimes rs + \overline{\langle X, Y \rangle s dr} . 
 \]
-where the second term lands in the quotient $\Omega^1_{\R} / \d \R$. We have an exact sequence of $\R$--modules
+The first term is an element of $\fg \tensor R$ and second terms lies in the summand $\Omega^1_{R} / \d R$. 
+We have an exact sequence of $R$-modules
 \[
-\ses{\Omega^1_{\R} / \d \R}{\ghat_{\R}}{\g_{\R}}
+\ses{\Omega^1_{R} / \d R}{\fghat_{R}}{\fg_{R}},
 \]
+exhibiting $\fghat_R$ as a central extension of $\fg \tensor R$. 
+
+\begin{rmk}
+When $\fg$ is semi-simple \brian{Killing form}.
+\end{rmk}
 
 \begin{eg}
 
+Let $n \geq 0$ be an integer.
 An important class of examples is obtained by taking
 \[
-\R= \cR_n := \C[w^{\pm 1}_0, \cdots, w^{\pm -1}_n]
+R := \CC[t^{\pm 1}_0, \cdots, t^{\pm -1}_n] .
 \]
-to be the algebra of functions on the complex $n+1$--dimensional torus $(\C^{\times})^{n+1}$. $\ghat_{\R_n}$ is called the $n+1$--toroidal Lie algebra for $n >0$ and an affine Kac-Moody algebra for $n=0$. 
+This is the algebra of functions on the $(n+1)$-dimensional algebraic torus. 
+
+When $n=0$, the vector space $\Omega^1_R / \d R$ is one-dimensional with an explicit isomorphism given by the residue
+\[
+{\rm Res} : \Omega^1_R / \d R \xto{\cong} \CC . 
+\]
+The resulting Lie algebra $\fghat_R$ is the ordinary affine algebra usually denoted by $\Hat{\fg}$. 
+ 
+For any $n \geq 1$ the vector space $\Omega^{1}_R / \d R$ is infinite dimensional. 
+Indeed, let us denote $k_i = t_i^{-1} \d t_i$. 
+The space $\Omega^1_{R} / \d R$ is generated over the ring $\CC[t_0^{\pm 1}, \ldots, t_n^{\pm 1}]$ by the symbols $k_0,\ldots, k_n$ subject to the relation
+\[
+\sum_{i = 0}^n m_i t_0^{m_0} \cdots t_n^{m_n} k_i = 0
+\]
+where $(m_0,\ldots, m_n)$ is any $n$-tuple of integers.
+The Lie algebra $\Hat{\fg}_R$ is called the $(n+1)$-{\em toroidal} Lie algebra associated to $\fg$.
 
 \end{eg}
 
 \matt{Something about $\Linf$ algebras, maybe in an appendix ?}
 
-We may resolve $\ghat_{\R}$ by an $L_{\infty}$ algebra $\gtil_{\R}$ as follows. Let 
+It will be useful for us to have an $L_\infty$-model for the Lie algebra $\fghat_{R}$. 
+This model amounts to replacing the $R$-module $\Omega^1_R / \d R$ appearing as the central term by the cochain complex
 \[
-\K_{\R} = \R[1] \overset{\d}{\rightarrow} \Omega^{1}_{\R}
+\cK_{R} = \Ker (\d) [2] \to R[1] \xto{\d} \Omega^{1}_{R} .
 \]
-and let
-$$ \phi^{(1)}: (\g_{\R})^{\otimes 2} \rightarrow \Omega^1_{\R} $$
-$$ \phi^{(1)} ((X \otimes r) \otimes (Y \otimes s)) = \langle X, Y \rangle (s \d r - r \d s) $$
+Just as the Lie algebra $\fghat_R$ is a central extension of $\fg_R = \fg \tensor R$, the $L_\infty$ model we wish to construct is a central extension of $\fg_R = \fg \tensor R$ by the cochain complex $\cK_R$. 
+ 
+The central extension is determined by a cocycle $\phi \in C^*(\fg_R, \cK_R)$ of total degree two.
+The cocycle is of the form $\phi = \phi^{(0)} + \phi^{(1)}$ where
+\[
+\begin{array}{ccccc}
+\phi^{(1)} & : & (\fg_{R})^{\otimes 2} & \rightarrow & \Omega^1_{R} \\
+& & (X \otimes r) \otimes (Y \otimes s) & \mapsto & \langle X, Y \rangle (s \d r - r \d s)
+\end{array}
+\]
 and 
-$$ \phi^{(0)}: (\g_{\R})^{\otimes 3} \rightarrow R[1] $$
-$$ \phi^{(0)}( (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t)) = \langle [X,Y], Z \rangle rst $$
-We may view $\phi = \phi^{(0)} + \phi^{(1)}$ as an cochain in the cohomological Chevalley-Eilenberg complex $$ \CEcoh(\g_{\R}, \K_{\R}) $$ of total degree $2$.
+\[
+\begin{array}{ccccc}
+\phi^{(0)} & : & (\fg_{R})^{\otimes 3} & \rightarrow & R \\
+& & (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t) & \mapsto &\langle [X,Y], Z \rangle rst
+\end{array}
+\]
 
 \begin{lemma}
-$\phi$ defines a cocycle in $\CEcoh(\g_{\R}, \K_{\R}) $ of total degree $2$.
+The functional $\phi$ defines a cocycle in $C^*(\fg_{R}, \cK_{R}) $ of total degree two.
 \end{lemma}
 \begin{proof}
-One readily checks that $d \phi^{0} + \d_{CE} \phi^{(1)} = 0 $ and $\d_{CE} \phi^{0} = \d \phi^{(1)} = 0$, which implies that $(\d_{CE} + \d) \phi = 0$.
+The differential in the cochain complex $C^*(\fg_R , \cK_R)$ is of the form $\d + \d_{CE}$ where $\d$ is the de Rham differential defining the complex $\cK_R$, and $\d_{CE}$ is the Chevalley-Eilenberg differential encoded by the Lie bracket of $\fg_R$.
+Immediately, we find
+\[
+(\d_{CE}\phi^{(1)})(X \tensor r, Y \tensor s, Z \tensor t) = .... 
+\]
+Similarly, $(\d \phi^{(0)})(X \tensor r, Y \tensor s, Z \tensor t) = ...$
+\brian{check signs and conventions.}
+The formulas above imply $(\d_{CE} + \d) \phi = 0$ as desired.
 \end{proof}
 
-{\color{red} SIGNS !}
-We may now use $\phi$ to define an $L_{\infty}$ central extension $\gtil_{\R}$ of $\g_{\R}$. As an $\R$-module, $ \gtil_{\R} = \K_{\R} \oplus \g_{\R} $, and Taylor coefficients $l_1 = d, l_2 = [,] + \phi^{(1)}$, and $l_3 = \phi^{(0)}$. The following is immediate:
+The cocycle $\phi$ defines an $L_{\infty}$ central extension
+\[
+\cK_R \to \Tilde{\fg}_R \to \fg_R .
+\]
+As an $R$-module, $\fgtil_{R} = \fg_R \oplus \cK_R$, and the $L_\infty$ operations are defined by $\ell_1 = \d, \ell_2 = [,] + \phi^{(1)}$, and $\ell_3 = \phi^{(0)}$.
+The following is immediate from our definitions:
 
-\begin{prop}
-$H^{*}(\gtil_{\R}, l_1) = \ghat_{\R}$
-\end{prop} 
+\begin{lemma}
+There is an isomorphism of Lie algebras
+$H^{*}(\fgtil_{\R}, \ell_1) = \fghat_{\R}.$
+\end{lemma} 
+\begin{proof}
+The cohomology of $\Tilde{\fg}_R$ is concentrated in degree zero, and as an $R$-module is given by $\fg_R \oplus H^0(\cK_R) = \fg_R \oplus \Omega^1_R / \d R$. 
+It is clear from our definition of $\phi$ that the resulting Lie bracket is the same as that of $\Hat{\fg}_R$. 
+\end{proof}
 
 \subsection{Vertex algebras}
 
@@ -404,22 +453,22 @@ Y(a^s,z) = A^s(z) .
 The version stated above appears in ~\cite{DSK}, and is slightly more general than the version stated in ~\cite{FBZ}. 
 \end{rmk}
 
-\subsection{The vertex algebras $V_{k}(\g)$ and $V(\ghat_{\R})$}
+\subsection{The vertex algebras $V_{k}(\fg)$ and $V(\fghat_{\R})$}
 
-Many vertex algebras are constructed from vacuum representations of affine Lie algebras and their generalizations. We proceed to review the vertex algebra structure on the affine Kac-Moody vacuum module $V_{k}(\g)$ and extend the construction to vacuum representations of $\ghat_{R}$, where $R=A[t,t^{-1}]$ for some $\C$-algebra $A$.
+Many vertex algebras are constructed from vacuum representations of affine Lie algebras and their generalizations. We proceed to review the vertex algebra structure on the affine Kac-Moody vacuum module $V_{k}(\fg)$ and extend the construction to vacuum representations of $\fghat_{R}$, where $R=A[t,t^{-1}]$ for some $\CC$-algebra $A$.
 
-\subsubsection{$V_{k}(\g)$}
-Let $\ghat = \g[t,t^{-1}] \oplus \C k$ be the affine Kac-Moody algebra, $\ghat^{+} = \g[t] \oplus \C k$ denote the positive sub-algebra, and $\C[k]$ denote the representation of $\ghat^{+}$ on which $\g[t]$ acts by $0$ and $k$ acts by multiplication. For $J \in \g$, denote $J \otimes t^n$ by $J_n$, and $1 \in \C[k]$ by $\vac$
+\subsubsection{$V_{k}(\fg)$}
+Let $\fghat = \fg[t,t^{-1}] \oplus \CC k$ be the affine Kac-Moody algebra, $\fghat^{+} = \fg[t] \oplus \CC k$ denote the positive sub-algebra, and $\CC[k]$ denote the representation of $\fghat^{+}$ on which $\fg[t]$ acts by $0$ and $k$ acts by multiplication. For $J \in \fg$, denote $J \otimes t^n$ by $J_n$, and $1 \in \CC[k]$ by $\vac$
 
 It is well-known (see for instance ~\cite{FBZ}) that the induced vacuum representation
 \[
-V_{\lambda}(\g) := \on{Ind}^{\ghat}_{\ghat^+} \C[k]
+V_{\lambda}(\fg) := \on{Ind}^{\fghat}_{\fghat^+} \CC[k]
 \] 
-has a $\C[k]$-linear vertex algebra structure, which is generated, in the sense of the above reconstruction theorem, by the fields
+has a $\CC[k]$-linear vertex algebra structure, which is generated, in the sense of the above reconstruction theorem, by the fields
 \[
 J^i (z) := Y(J^{i}_{-1} \vac, z) = \sum_{n \in \mathbb{Z}} J^i_n z^{-n-1},
 \]
-where $\{ J^{i} \}$ is a basis for $\g$. These satisfy the commutation relations
+where $\{ J^{i} \}$ is a basis for $\fg$. These satisfy the commutation relations
 \[
 [J^i(z), J^{k}(w)] = [J^{i}, J^{k}](w) \delta(z-w) +  \langle J^{i}, J^{k} \rangle k \partial_w \delta(z-w)
 \]
@@ -433,22 +482,22 @@ T \vac =0, [T, J^i_n] = -n J^{i}_{n-1}.
 \]
 
 
-\subsubsection{$V(\ghat_{\R})$}
+\subsubsection{$V(\fghat_{\R})$}
 
-The vertex algebra structure on $V_{k}(\g)$ may be generalized to vacuum representations of $\ghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \C[t,t^{-1}]$ for some $\C$--algebra $A$. 
+The vertex algebra structure on $V_{k}(\fg)$ may be generalized to vacuum representations of $\fghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$ for some $\CC$-algebra $A$. 
 
 
-Let $A$ be a $\C$-algebra, $\R=A[t,t^{-1}] := A \otimes \C[t,t^{-1}]$, and $\ghat_{\R}$ the Lie algebra (\ref{uce}). 
+Let $A$ be a $\CC$-algebra, $\R=A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$, and $\fghat_{\R}$ the Lie algebra (\ref{uce}). 
 %We will assume that $A$ has a countable $\mathbb{C}$-basis $\{ f^r \}_{r \in \mathbb{N}}$, and so $\{ f^r t^s \}_{r \in \mathbb{N}, s \in \mathbb{Z}} $ is a countable basis for $A[t,t^{-1}]$. 
-% If $J \in \g$, we denote by $J_n f^r$ the element $J \otimes f^r t^{n} \in \g \otimes A[t,t^{-1}]$. 
+% If $J \in \fg$, we denote by $J_n f^r$ the element $J \otimes f^r t^{n} \in \fg \otimes A[t,t^{-1}]$. 
 There is a natural injection
 \[
 \Omega^1_{A[t]}/ d A[t] \hookrightarrow \Omega^{1}_{\R} / d \R
 \]
 and 
-$$\ghat^{+}_{\R} := \g[t] \oplus \Omega^1_{A[t]}/ d A[t]  $$ is naturally a Lie subalgebra of $\ghat_{\R}$. Let $\mathbf{C}$ denote the trivial representation of $\ghat^{+}_{\R}$, and let
+$$\fghat^{+}_{\R} := \fg[t] \oplus \Omega^1_{A[t]}/ d A[t]  $$ is naturally a Lie subalgebra of $\fghat_{\R}$. Let $\mathbf{C}$ denote the trivial representation of $\fghat^{+}_{\R}$, and let
 \begin{equation}
-V(\ghat_{\R}) := \on{Ind}^{\ghat_{\R}}_{\ghat^+_{\R}} \mathbf{C}
+V(\fghat_{\R}) := \on{Ind}^{\fghat_{\R}}_{\fghat^+_{\R}} \mathbf{C}
 \end{equation}
 Let $\vac := 1 \in \mathbf{C}$, and consider the field assignments
 \begin{align}
@@ -456,7 +505,7 @@ J_f(z) := Y(J^{i} \otimes f t^{-1} \vac,z ) & := \sum_{n \in \mathbb{Z}} (J^i  \
 K_{f \frac{dt}{t}} :=  Y(t^{-1} f dt \vac,z ) & := \sum_{n \in \mathbb{Z}} ( f t^{n-1} dt )  z^{-n}, \\
 K_{t^{-1} \omega} := Y(t^{-1}  \omega \vac,z ) & := \sum_{n \in \mathbb{Z}}( t^{n} \omega )    z^{-n-1} \\
 \end{align}
-where $J\in \g, f \in A, \omega \in \Omega^{1}_A$. 
+where $J\in \fg, f \in A, \omega \in \Omega^{1}_A$. 
 
 The commutation relations between these fields are easily checked to be
 $$
@@ -472,7 +521,7 @@ T \vac =0, \; [T, J^i \otimes f t^n] = -n J^i \otimes f t^{n-1}, \; [T, f t^n dt
 \]
 
 \begin{theorem}
-The above field assignments, together with $T$ equip $V(\ghat_{\R})$ with the structure of a vertex algebra.
+The above field assignments, together with $T$ equip $V(\fghat_{\R})$ with the structure of a vertex algebra.
 \end{theorem}
 
 \begin{proof}
@@ -483,7 +532,7 @@ Y(d(t^{-1}f) \vac, z) &= Y(t^{-1} df \vac, z) - Y(f t^{-2} f \vac, z) \\
 &= Y(t^{-1} df \vac, z) - \partial_z Y( t^{-1} f dt \vac, z) \\
 &= \sum_{n} (t^n df + n t^{n-1} f) z^{-n-1} = \sum_{n} d(t^n f) z^{-n-1} = 0
 \end{align*}
-The result now follows by applying the reconstruction theorem \ref{rec_thm} to $V(\ghat_\R)$ and the fields $\{ J_f (z), K_{f \frac{dt}{t}}, K_{t^{-1} \omega} \}$ for $f \in A, \omega \in \Omega^{1}_A $.
+The result now follows by applying the reconstruction theorem \ref{rec_thm} to $V(\fghat_\R)$ and the fields $\{ J_f (z), K_{f \frac{dt}{t}}, K_{t^{-1} \omega} \}$ for $f \in A, \omega \in \Omega^{1}_A $.
 \end{proof}
 
 \section{(Pre)-factorization algebras and examples}
@@ -633,11 +682,11 @@ Clearly, $\tau_x (\tau_y U) = \tau_{x+y} U$. We say that $\sF$ is \emph{translat
 for each $x \in \mathbb{R}^n$ compatible with composition and the structure maps of $\sF$. We refer to section 4.8 of  \cite{CG} for details. 
 
 \begin{eg}
-For any Lie algebra $\g$, the factorization envelope $\U(\g \otimes \Omega^*_{\mathbb{R}^n})$ of section ?? is translation-invariant. 
+For any Lie algebra $\fg$, the factorization envelope $\U(\fg \otimes \Omega^*_{\mathbb{R}^n})$ of section ?? is translation-invariant. 
 \end{eg}
 
 If $\sF$ is a
-prefactorization algebra on $\bfC^n$, we can further refine the notion of translation-invariance. 
+prefactorization algebra on $\CC^n$, we can further refine the notion of translation-invariance. 
 We say that $\sF$ is {\it holomorphically translation invariant}
 if
 \begin{itemize}
@@ -650,13 +699,13 @@ if
 This condition means that anti-holomorphic vector fields act homotopically trivially on $\sF$. 
 
 \begin{eg}
-For any Lie algebra $\g$, the holomorphic factorization envelope $\U(\g \otimes \Omega^{0,*}_{\C^n})$ is holomorphically translation-invariant, with \matt{elaborate what $\eta$ is here}.
+For any Lie algebra $\fg$, the holomorphic factorization envelope $\U(\fg \otimes \Omega^{0,*}_{\CC^n})$ is holomorphically translation-invariant, with \matt{elaborate what $\eta$ is here}.
 \end{eg}
 
 
-\subsection{$S^1$-equivariant factorization algebras on $\C$ and vertex algebras}
+\subsection{$S^1$-equivariant factorization algebras on $\CC$ and vertex algebras}
 
-In order to build a bridge between the world of prefactorization algebras on $\C$ and vertex algebras, we will need to consider prefactorization algebras possessing a type of $S^1$-equivariance, which we proceed to review. 
+In order to build a bridge between the world of prefactorization algebras on $\CC$ and vertex algebras, we will need to consider prefactorization algebras possessing a type of $S^1$-equivariance, which we proceed to review. 
 
 The last piece of data we need corresponds to the ``conformal
 decomposition'' of a vetex algebra. For us, this will come from an
@@ -685,21 +734,21 @@ to the $l$-th eigenspace.
 \[
 \mu_{z,0} : \left(\lim_{r \to 0} {\rm
     H}^*(\sF(r))\right)^{\tensor 2} \to {\rm Hol}\left({\rm
-  Conf}_2(\bfC), {\rm H}^*(\sF(\bfC))\right)
+  Conf}_2(\CC), {\rm H}^*(\sF(\CC))\right)
 \]
 defined above. Certainly, we have a map $V
   \to \lim_{r \to 0} {\rm
     H}^*(\sF(r))$, so it makes sense to resctict $\mu_{z,0}$ to a
   map 
 \[
-V \tensor V \to {\rm Hol}\left({\rm Conf}_2(\bfC), {\rm
-    H}^*(\sF(\bfC))\right) \simeq {\rm Hol}\left(\bfC^\times, {\rm
-    H}^*(\sF(\bfC))\right) .
+V \tensor V \to {\rm Hol}\left({\rm Conf}_2(\CC), {\rm
+    H}^*(\sF(\CC))\right) \simeq {\rm Hol}\left(\CC^\times, {\rm
+    H}^*(\sF(\CC))\right) .
 \]
 Post composing this with the projection maps $H^*(\sF(\infty)) \to
 V_l$ combine to define the map
 \[
-\Bar{\mu}_{z,0} : V \tensor V \to \prod_l {\rm Hol}(\bfC^\times, V_l)
+\Bar{\mu}_{z,0} : V \tensor V \to \prod_l {\rm Hol}(\CC^\times, V_l)
 \]
 We can perform Laurent expansions to view this as
 \[
@@ -716,7 +765,7 @@ One can show that this actually lies in $V((z))$ for all $v,v'$.
 The above can be made much more precise and made into the following
 theorem. 
 
-\begin{theorem}[Theorem 5.2.2.1 \cite{CG1}] \label{fv} Let $\sF$ be a $S^1$-equivariant holomorphically translation invariant factorization algebra on $\bfC$. Suppose
+\begin{theorem}[Theorem 5.2.2.1 \cite{CG1}] \label{fv} Let $\sF$ be a $S^1$-equivariant holomorphically translation invariant factorization algebra on $\CC$. Suppose
 \begin{itemize}
 \item The action of $S^1$ on $\sF(r)$ extends smoothly to an action of the algebra of distributions on $S^1$. 
 \item For $r < r'$ the map 
@@ -730,13 +779,13 @@ is a quasi-isomorphism.
 Then $\mathbb{V}{\rm ert} (\sF) := \oplus_l {\rm H}^*(\sF^{(l)}(r))$ (which is independent of $r$ by assumption) has the structure of a vertex algebra.
 \end{theorem}
 
-Let ${\rm PreFact}_\bfC$ denote the category of prefactorization
-algebras on $\bfC$. Let ${\rm PreFact}^{\rm hol}_\bfC \subset {\rm
-  PreFact}_\bfC$ be the full subcategory spanned by prefactorization
+Let ${\rm PreFact}_\CC$ denote the category of prefactorization
+algebras on $\CC$. Let ${\rm PreFact}^{\rm hol}_\CC \subset {\rm
+  PreFact}_\CC$ be the full subcategory spanned by prefactorization
 algebras satisfying the conditions of the above theorem. This result
 can be upgraded to provide a functor
 \[
-\mathbb{V}{\rm ert} : {\rm PreFact}^{\rm hol}_\bfC \to {\rm Vert}
+\mathbb{V}{\rm ert} : {\rm PreFact}^{\rm hol}_\CC \to {\rm Vert}
 \]
 where ${\rm Vert}$ is the category of vertex algebras. 
 
@@ -749,28 +798,28 @@ In this section, we describe our main construction factorization algebras from l
 Let us begin with the following data:
 \begin{itemize}
 \item a complex manifold $F$
-\item $X = \C^n, n \geq 1$
+\item $X = \CC^n, n \geq 1$
 \item $E = X \times F$, with $\pi: E \mapsto X $ the canonical projection
-\item $(\g, \langle, \rangle)$ a Lie algebra with an invariant bilinear form.
+\item $(\fg, \langle, \rangle)$ a Lie algebra with an invariant bilinear form.
 \end{itemize}
 
-We note that $\g_E := (\g \otimes \Omega^{0,*}_E, \delbar)$ forms a sheaf of DGLA's on $E$, and
+We note that $\fg_E := (\fg \otimes \Omega^{0,*}_E, \delbar)$ forms a sheaf of DGLA's on $E$, and
 set
 \[
-\K_E := \on{Tot} ( \Omega^{0,*} \overset{\partial}{\longrightarrow} \Omega^{1,*})
+\cK_E := \on{Tot} ( \Omega^{0,*} \overset{\partial}{\longrightarrow} \Omega^{1,*})
 \]
-(i.e. $\K_E$ is the totalization of the double complex of forms $\Omega^{p,q}_E$ with $p \leq 1$), Denote by $d_{\K_E}$ the total differential of $\K_E$. 
+(i.e. $\cK_E$ is the totalization of the double complex of forms $\Omega^{p,q}_E$ with $p \leq 1$), Denote by $d_{\cK_E}$ the total differential of $\cK_E$. 
 Let 
 
-$$ \phi^{(1)}: (\g_{E})^{\otimes 2} \rightarrow \Omega^(1,*)_{E} $$
+$$ \phi^{(1)}: (\fg_{E})^{\otimes 2} \rightarrow \Omega^(1,*)_{E} $$
 $$ \phi^{(1)} ((X \otimes r) \otimes (Y \otimes s)) = \langle X, Y \rangle (s \del r - r \del s) $$
 and 
-$$ \phi^{(0)}: (\g_{E})^{\otimes 3} \rightarrow \Omega^{0,*}_E $$
+$$ \phi^{(0)}: (\fg_{E})^{\otimes 3} \rightarrow \Omega^{0,*}_E $$
 $$ \phi^{(0)}( (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t)) = \langle [X,Y], Z \rangle rst $$
-We may view $\phi = \phi^{(0)} + \phi^{(1)}$ as an cochain in the cohomological Chevalley-Eilenberg complex $$ \CEcoh(\g_{E}, \K_{E}) $$ of total degree $2$.
+We may view $\phi = \phi^{(0)} + \phi^{(1)}$ as an cochain in the cohomological Chevalley-Eilenberg complex $$ \CEcoh(\fg_{E}, \cK_{E}) $$ of total degree $2$.
 
 \begin{lemma}
-$\phi$ defines a cocycle in $\CEcoh(\g_{\E}, \K_{E}) $ of total degree $2$.
+$\phi$ defines a cocycle in $\CEcoh(\fg_{\E}, \cK_{E}) $ of total degree $2$.
 \end{lemma}
 \begin{proof}
 
@@ -778,48 +827,48 @@ $\phi$ defines a cocycle in $\CEcoh(\g_{\E}, \K_{E}) $ of total degree $2$.
 
 We may use the cocycle $\phi$ to equip 
 \begin{equation}
-\ghat_{E} := \g \otimes \Omega^{0,*}_E \oplus \K_{E}
+\fghat_{E} := \fg \otimes \Omega^{0,*}_E \oplus \cK_{E}
 \end{equation}
 with the structure of a local $L_{\infty}$ central extension. Explicitly, this means that $\wt{d} = d + d_{CE} + \phi$ is a differential of cohomological degree $1$ on the complex of sheaves on $E$
 \[
-\C^{*}(\ghat_E) := \on{Sym}(\ghat_E[1]),
+C^{*}(\fghat_E) := \on{Sym}(\fghat_E[1]),
 \]
 where 
 \begin{itemize}
-\item $d = \delbar + d_{\K_E}$ is the differential on $\ghat_E$ (with the summands acting on $\g_E, \K_E$ respectively)
-\item $d_{CE}$ is the Chevalley-Eilenberg differential of $\g_E$
-\item $\phi$ is extended to $\on{Sym}(\ghat_E[1])$ as a derivation
+\item $d = \delbar + d_{\cK_E}$ is the differential on $\fghat_E$ (with the summands acting on $\fg_E, \cK_E$ respectively)
+\item $d_{CE}$ is the Chevalley-Eilenberg differential of $\fg_E$
+\item $\phi$ is extended to $\on{Sym}(\fghat_E[1])$ as a derivation
 \end{itemize}
 
 Let 
 \begin{equation}
-\ghat_{X,E} = \pi_*(\ghat_E)
+\fghat_{X,E} = \pi_*(\fghat_E)
 \end{equation}
 
 
 \begin{lemma}
-$\ghat_{X,E}$ has the structure of a pro-local $L_{\infty}$--algebra on $X$
+$\fghat_{X,E}$ has the structure of a pro-local $L_{\infty}$--algebra on $X$
 \end{lemma}
 
-\subsubsection{The factorization algebra $\F_{E,X}$}
+\subsubsection{The factorization algebra $\sF_{E,X}$}
 
-We proceed to construct a factorization algebra on $X$ from $\ghat_{X,E}$. For an open set $U \subset X$, let
+We proceed to construct a factorization algebra on $X$ from $\fghat_{X,E}$. For an open set $U \subset X$, let
 \begin{equation}
-\ghat^c_{X,E}(U) = \Gamma_c (U, \ghat_{X,E})
+\fghat^c_{X,E}(U) = \Gamma_c (U, \fghat_{X,E})
 \end{equation}
-be the co-sheaf of sections with compact support of $\ghat_{X,E}$. $\ghat^c_{X,E}$ has the structure of a complex of pre-cosheaves of $L_{\infty}$ algebras on $X$. 
+be the co-sheaf of sections with compact support of $\fghat_{X,E}$. $\fghat^c_{X,E}$ has the structure of a complex of pre-cosheaves of $L_{\infty}$ algebras on $X$. 
 
 Let
 \begin{equation}
-\F_{X,E} := \mathcal{C}_{*} ( \ghat_{X,E} )
+\sF_{X,E} := C_{*} ( \fghat_{X,E} )
 \end{equation}
 be the corresponding homology Chevalley-Eilenberg compex, which for each open $U \subset X$ assigns the complex
 \[
-\F_{X,E}(U) = \mathcal{C}_{*} (\ghat^c_{X,E}(U))
+\sF_{X,E}(U) = C_{*} (\fghat^c_{X,E}(U))
 \]
 
 \begin{theorem}
-$\F_{X,E}$ has the structure of a holomorphically translation-invariant factorization algebra on $X=\mathbb{C}^n$. 
+$\sF_{X,E}$ has the structure of a holomorphically translation-invariant factorization algebra on $X=\CC^n$. 
 \end{theorem}
 
 \subsection{$dim(X)=1$ and vertex algebras}
