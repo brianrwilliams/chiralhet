@@ -458,11 +458,12 @@ The version stated above appears in ~\cite{DSK}, and is slightly more general th
 Many vertex algebras are constructed from vacuum representations of affine Lie algebras and their generalizations. We proceed to review the vertex algebra structure on the affine Kac-Moody vacuum module $V_{k}(\fg)$ and extend the construction to vacuum representations of $\fghat_{R}$, where $R=A[t,t^{-1}]$ for some $\CC$-algebra $A$.
 
 \subsubsection{$V_{k}(\fg)$}
-Let $\fghat = \fg[t,t^{-1}] \oplus \CC k$ be the affine Kac-Moody algebra, $\fghat^{+} = \fg[t] \oplus \CC k$ denote the positive sub-algebra, and $\CC[k]$ denote the representation of $\fghat^{+}$ on which $\fg[t]$ acts by $0$ and $k$ acts by multiplication. For $J \in \fg$, denote $J \otimes t^n$ by $J_n$, and $1 \in \CC[k]$ by $\vac$
+Let $\fghat = \fg[t,t^{-1}] \oplus \CC K$ be the affine Kac-Moody algebra, $\fghat^{+} = \fg[t] \oplus \CC K$ denote the positive sub-algebra, and $\CC[k]$ denote the representation of $\fghat^{+}$ on which $\fg[t]$ acts by $0$ and $K$ acts by multiplication by $k$.
+For $J \in \fg$, denote $J \otimes t^n$ by $J_n$, and $1 \in \CC[k]$ by $\vac$
 
 It is well-known (see for instance ~\cite{FBZ}) that the induced vacuum representation
 \[
-V_{\lambda}(\fg) := \on{Ind}^{\fghat}_{\fghat^+} \CC[k]
+V (\fg) := \on{Ind}^{\fghat}_{\fghat^+} \CC[k]
 \] 
 has a $\CC[k]$-linear vertex algebra structure, which is generated, in the sense of the above reconstruction theorem, by the fields
 \[
@@ -484,24 +485,52 @@ T \vac =0, [T, J^i_n] = -n J^{i}_{n-1}.
 
 \subsubsection{$V(\fghat_{\R})$}
 
-The vertex algebra structure on $V_{k}(\fg)$ may be generalized to vacuum representations of $\fghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$ for some $\CC$-algebra $A$. 
+In this section we define the toroidal version of the Kac-Moody vertex algebra.
+This is a class of vertex algebras associated to the Lie algebra $\fghat_R$ (or its $L_\infty$-model $\Tilde{\fg}_R$) in the same way the vertex algebra $V_k(\fg)$ is related to the affine Lie algebra.
+
+%The vertex algebra structure on $V_{k}(\fg)$ may be generalized to vacuum representations of $\fghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$ for some $\CC$-algebra $A$. 
 
 
-Let $A$ be a $\CC$-algebra, $\R=A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$, and $\fghat_{\R}$ the Lie algebra (\ref{uce}). 
+Let $A$ be a $\CC$-algebra, $R=A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$, and $\fghat_{R}$ the Lie algebra (\ref{uce}). 
 %We will assume that $A$ has a countable $\mathbb{C}$-basis $\{ f^r \}_{r \in \mathbb{N}}$, and so $\{ f^r t^s \}_{r \in \mathbb{N}, s \in \mathbb{Z}} $ is a countable basis for $A[t,t^{-1}]$. 
 % If $J \in \fg$, we denote by $J_n f^r$ the element $J \otimes f^r t^{n} \in \fg \otimes A[t,t^{-1}]$. 
-There is a natural injection
+Note the natural embedding of vector spaces
 \[
-\Omega^1_{A[t]}/ d A[t] \hookrightarrow \Omega^{1}_{\R} / d \R
+\Omega^1_{A[t]}/ d A[t] \cong \left(\Omega^1_A / \d A\right) [t] \hookrightarrow \Omega^{1}_{R} / d R .
 \]
-and 
-$$\fghat^{+}_{\R} := \fg[t] \oplus \Omega^1_{A[t]}/ d A[t]  $$ is naturally a Lie subalgebra of $\fghat_{\R}$. Let $\mathbf{C}$ denote the trivial representation of $\fghat^{+}_{\R}$, and let
+Correspondingly, there is the Lie subalgebra 
+\[
+\fghat^{+}_{R} := \fg \tensor A [t] \oplus \Omega^1_{A[t]}/ d A[t] \hookrightarrow \fghat_R .
+\]
+Note that unlike $\fghat_R$, the Lie subalgebra $\fghat^+_R$ splits as a direct sum.
+\brian{In the case that $A=\CC$ this seems to give $\fghat^+_R = \fg [t]$ since all one-forms on $\CC[t]$ are exact. 
+This is probably not what we want, since in the case of the Kac-Moody, the annihilation subalgebra is of the form $\fg[t] + \CC$.
+Should we take
+\[
+\fghat^+_R = \fg \tensor A[t] \oplus \Omega^1_R / \d R ??
+\]
+}
+
+\brian{I'm now confused by this definition of the vacuum module.
+Do we really want to induce up the trivial $\fg \tensor A[t]$-module? In this case it is unclear how the central term should act.
+If my guess above is correct, we could fix an action by fixing a homomorphism
+\[
+\rho : \Omega^1_R / \d R \to \CC .
+\]
+In the case $A=\CC$, to get level $k$ Kac-Moody you take $\rho$ to be $k$ times the residue pairing.
+}
+Define the $\fghat_R$-module
 \begin{equation}
-V(\fghat_{\R}) := \on{Ind}^{\fghat_{\R}}_{\fghat^+_{\R}} \mathbf{C}
+V(\fghat_{R}) := \on{Ind}^{\fghat_{R}}_{\fghat^+_{R}} AHHHH
 \end{equation}
-Let $\vac := 1 \in \mathbf{C}$, and consider the field assignments
+Our goal is to define the structure of a vertex algebra on $V(\fghat_R)$. 
+
+Unsurprisingly, the vacuum vector is simply $\vac := 1 \in \CC$
+In the notation below we let $f \in A$, $\omega \in \Omega^1_A / \d A$, and $\{J^i\}$ is a basis for $\fg$. 
+The fields of the vertex algebra split into three classes and are defined as follows. 
+
 \begin{align}
-J_f(z) := Y(J^{i} \otimes f t^{-1} \vac,z ) & := \sum_{n \in \mathbb{Z}} (J^i  \otimes f t^{n}) z^{-n-1}, \\
+J^i_f(z) := Y(J^{i} \otimes f t^{-1} \vac,z ) & := \sum_{n \in \mathbb{Z}} (J^i  \otimes f t^{n}) z^{-n-1}, \\
 K_{f \frac{dt}{t}} :=  Y(t^{-1} f dt \vac,z ) & := \sum_{n \in \mathbb{Z}} ( f t^{n-1} dt )  z^{-n}, \\
 K_{t^{-1} \omega} := Y(t^{-1}  \omega \vac,z ) & := \sum_{n \in \mathbb{Z}}( t^{n} \omega )    z^{-n-1} \\
 \end{align}
@@ -870,6 +899,41 @@ be the corresponding homology Chevalley-Eilenberg compex, which for each open $U
 \begin{theorem}
 $\sF_{X,E}$ has the structure of a holomorphically translation-invariant factorization algebra on $X=\CC^n$. 
 \end{theorem}
+
+\brian{We still need to check that $\pi_* \fg_E$ has the structure of a "pro-local" Lie algebra on the base space. 
+Even in the case of vector bundles, pushing forward along non-proper maps seems to be a pretty hairy thing to do.
+For instance, it'd be nice if we could find any reference for the following situation: given a fibration $\pi : Y \to X$ (holomorphic for us) and a vector bundle on the total space $V \to Y$, what conditions on $\pi$ guarantee that one can define a vector bundle $\pi_* V$ on $X$. 
+I'm miffed about any case in which the fiber is not compact. 
+}
+
+\brian{
+As a more hands on approach to this construction, let me try out the following. 
+Suppose $V$ is a vector bundle on the total space of a fibration $\pi : Y \to X$ satisfying the following property: there is an open cover $\{U_\alpha\}$ on $X$ such that 
+\begin{itemize}
+\item $\pi^{-1}(U_\alpha) \cong U_\alpha \times F$, and
+\item there is an isomorphism $V|_{\pi^{-1}(U_\alpha)} \cong \pi^*V_1 \tensor \pi_F^*V_2$ where $V_1,V_2$ are vector bundles on $X,F$ and $\pi_F : U_\alpha \times F \to F$.
+\end{itemize}
+}
+
+\brian{
+For example, suppose $Y = X \times F$ is the trivial fibration and $V = \oplus_k \wedge^k T^*Y$ (so that sections of $V$ is the de Rham complex of $Y$.)
+Then, since $T^*Y = \pi^* T^*X \oplus \pi_F^* T^*F$, the bundle $V$ satisfies the conditions above. 
+}
+
+\brian{In this situation, I believe we can define a cosheaf $\Tilde{\Gamma}_{\pi, c}(-;V)$ on the base space $X$ of ``partially" compactly supported sections.}
+
+\brian{The example we need to understand first is the case of a holomorphic fibration of complex manifolds, so let's do that.
+Also, I'll assume that $V$ is just the bundle defining the Dolbeault complex, for simplicity.
+In the trivial case $Y = X \times F$, it's clear what to do: if $U \subset X$ is open, define
+\[
+\Tilde{\Omega}^{0,*}_{\pi,c} (U) = \Omega^{0,*}_c(U) \tensor \Omega^{0,*}(F) .
+\]
+In the general case $\pi : Y \to X$, we need to take advantage of local triviality to glue the cosheaf $\Tilde{\Omega}^{0,*}_{\pi, c}$. 
+Clearly, in the case that $F$ is compact, this cosheaf agrees with the usual pushforward of cosheaves.
+}
+
+\brian{
+For this case, we can define the untwisted factorization algebra immediately, since cosheaves of Lie algebras 
 
 \subsection{$dim(X)=1$ and vertex algebras}
 
