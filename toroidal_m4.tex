@@ -1,0 +1,965 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{slashed}
+\linespread{1.25}
+
+\usepackage{amsrefs, mathrsfs,amsmath, amscd, amsthm,amssymb, amsfonts, verbatim,subfigure, enumerate,stmaryrd}
+%\usepackage[mathcal]{eucal}
+\usepackage[mathscr]{euscript}
+\usepackage[all,cmtip]{xy}
+\usepackage{graphicx}
+\usepackage[top=1in, bottom=1.25in, left=1.3in, right=1.3in]{geometry}
+%\usepackage{fullpage}
+%\usepackage{epstopdf}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename #1 .tif`.png}
+%Use Palatino font
+
+\usepackage{mathpazo}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red]{hyperref}
+
+
+%formatting
+%\usepackage[margin=1in]{geometry}
+%\geometry{letterpaper}
+
+%%xymatrix
+\usepackage[all,cmtip]{xy}
+\newcommand{\xym}{\xymatrix@1@=14pt@M=2pt}
+
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc,through}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pgffor}
+%\usepackage{tikz-feynman} 
+
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\tikzset{
+	% >=stealth', %%  Uncomment for more conventional arrows
+    vector/.style={decorate, decoration={snake}, draw},
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+    fermion/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    fermionbar/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    fermionnoarrow/.style={draw=black},
+    gluon/.style={decorate, draw=black,
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    scalarbar/.style={dashed,draw=black, postaction={decorate},
+        dwecoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    scalarnoarrow/.style={dashed,draw=black},
+    electron/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+	bigvector/.style={decorate, decoration={snake,amplitude=4pt}, draw},
+}
+
+\pagestyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{dfn}[theorem]{Definition}
+\newtheorem{dfn/lem}{Definition/Lemma}
+\newtheorem{lesson}[theorem]{Lesson}
+
+\theoremstyle{remark}
+\newtheorem{rmk}[theorem]{Remark}
+\newtheorem{eg}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+
+
+\linespread{1.25}
+
+\usepackage{parskip}
+\setlength{\parindent}{18pt}
+\setlength{\parindent}{0cm}
+
+
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+}
+
+
+%\numberwithin{equation}{section}
+%\numberwithin{example}{section}
+%\numberwithin{definition}{section}
+
+
+%%%%%%%%%%%%%%%%%%%%%%         Defintions        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\on}{\operatorname}
+\newcommand{\ol}{\overline}
+\newcommand{\nc}{\newcommand}
+\nc{\wt}{\widetilde}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Symbols %%%%%%%%%%%%%%%%%%%
+
+
+%\newcommand{\CC}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{R}
+\nc{\cR}{\mathcal{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Etau}{{\text{E}_\tau}}
+\newcommand{\E}{{\mathcal E}}
+\nc{\U}{\mathbf{U}}
+%\newcommand{\F}{\mathbf{F}}
+%\newcommand{\G}{\mathbf{G}}
+\newcommand{\eps}{\epsilon}
+%\newcommand{\g}{\mathbf{g}}
+\newcommand{\im}{\op{im}}
+%%%%%%%%%%%%%%%%%%%%%%         Functions         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abracket}[1]{\left\langle#1\right\rangle}
+\newcommand{\bbracket}[1]{\left[#1\right]}
+\newcommand{\fbracket}[1]{\left\{#1\right\}}
+\newcommand{\bracket}[1]{\left(#1\right)}
+\providecommand{\from}{\leftarrow}
+\newcommand{\bl}{\textbf}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\cinfty}{C^{\infty}}
+\newcommand{\pa}{\partial}
+\newcommand{\prm}{\prime}
+%\renewcommand{\dbar}{\bar\pa}
+\newcommand{\OO}{{\mathcal O}}
+\newcommand{\hotimes}{\hat\otimes}
+\newcommand{\BV}{Batalin-Vilkovisky }
+\newcommand{\CE}{Chevalley-Eilenberg }
+\newcommand{\suml}{\sum\limits}
+\newcommand{\prodl}{\prod\limits}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\Ol}{\mathcal O_{loc}}
+\newcommand{\mD}{{\mathcal D}}
+\newcommand{\iso}{\cong}
+\newcommand{\dpa}[1]{{\pa\over \pa #1}}
+\newcommand{\PP}{\mathrm{P}}
+\newcommand{\Kahler}{K\"{a}hler }
+\newcommand{\Fock}{{\mathcal Fock}}
+
+
+
+\nc{\CEcoh}{\mathcal{C}^{*}}
+
+
+%%%%%%%%%%%%% Lie algebras
+\nc{\fh}{\mathfrak{h}}
+\nc{\fg}{\mathfrak{g}}
+\nc{\fghat}{\widehat{\fg}}
+\nc{\fn}{\mathfrak{n}}
+\nc{\cF}{\mc{F}}
+\nc{\CC}{\mathbb{C}}
+\nc{\Linf}{L_{\infty}}
+\nc{\cL}{\mc{L}}
+
+
+
+\nc{\delbar}{\overline{\partial}}
+\nc{\del}{\partial}
+\nc{\dd}{d}
+
+\nc{\vac}{|0\rangle}
+
+\nc{\cK}{\mc{K}}
+\nc{\opqm}[2]{\Omega^{#1,#2}_{m}}
+\nc{\fgtil}{\wt{\fg}}
+%\nc{\CC}{\mathcal{C}_{*}}
+\nc{\Sym}{\on{Sym}}
+\nc{\dzbar}{d \overline{z}}
+
+\nc{\symcat}{\on{\bf C}^{\otimes}}
+\nc{\Fcal}{\mathcal{F}}
+\nc{\sF}{\mc{F}}
+
+\nc{\Vect}{\on{Vect}}
+\nc{\dgVect}{\on{dg-Vect}}
+
+\nc{\ip}{\langle \bullet , \bullet \rangle}
+\nc{\ses}[3]{0 \rightarrow #1 \rightarrow #2 \rightarrow #3 \rightarrow 0}
+
+
+\renewcommand{\Im}{\op{Im}}
+\renewcommand{\Re}{\op{Re}}
+%%%%%%%%%%%%%%%%%%%%%%     Math    Operators         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\mHom}{\mathcal{H}om}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Supp}{Supp}
+%\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Deg}{Deg}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Or}{Or}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Isom}{Isom}
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\HW}{HW}
+\DeclareMathOperator{\Eu}{Eu}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Res}{Res}
+
+\def\d{{\rm d}}
+\def\tensor{\otimes}
+\def\Hat{\widehat}
+\def\xto{\xrightarrow}
+
+
+\def\brian{\textcolor{blue}{BW: }\textcolor{blue}}
+\def\matt{\textcolor{red}{MS:}\textcolor{red}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Allow display breaks within equations %%%%%%%%%%%%%%%%%%%%
+\allowdisplaybreaks[4]  %%%%%%%%%%% choose 1-4, where 4 is the strongest desire to breack
+
+\begin{document}
+
+ \title{Factorization and vertex algebras from  holomorphic fibrations}
+  \author{Matt Szczesny, Jackson Walters, and Brian Williams}
+  \date{}
+
+  
+  \maketitle
+
+\begin{abstract}
+Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorphic fibration with fiber $F$, and $(\fg, \ip )$ a Lie algebra with an invariant symmetric form. We show how to associate to this data a holomorphic factorization algebra  $\cF_{Y/X}(\fg)$ on $X$ in the formalism of Costello-Gwilliam via a type of pushforward operation. When $X=\mathbb{C}$, this construction produces a vertex algebra which is a vacuum module for the universal central extension of $\fg \otimes H^{0}(F, \mc{O})[z,z^{-1}]$. In particular,  when $F$ is a torus $(\CC^{*})^n$, we recover a vertex algebra naturally associated to an $n+1$--toroidal algebra. We give an explicit description of the chiral homology of $\cF_{Y/X}(\fg)$.
+\end{abstract}
+
+
+\tableofcontents
+
+
+\section{Introduction}
+
+Suppose $\fg$ is a Lie algebra. 
+By definition, a universal central extension of $\fg$ is a central extension of $\fg$ such that all other central extensions are pulled back from it. 
+Universal central extensions are unique if they exist. 
+As an example, consider the (infinite dimensional) Lie algebra $\fg[z,z^{-1}] = \fg \tensor \mathbb{C}[z,z^{-1}]$ where $\fg$ is a complex simple Lie algebra. 
+Here, $\mathbb{C}[z,z^{-1}]$ is the commutative algebra of Laurent polynomials and the resulting Lie algebra $\fg[z,z^{-1}]$ is known as the {\em loop algebra} of $\fg$. . 
+In \cite{Garland} \brian{is this reference correct?} it is shown that there exists a universal central extension of $\fg[z,z^{-1}]$ of the form
+\[
+\mathbb{C} \to \Hat{\fg} \to \fg[z,z^{-1}] .
+\]
+These extensions are known as {\em affine algebras} and are \brian{...}.
+
+In \cite{Kassel}, a generalization of this universal central extension is considered where $\mathbb{C}[z,z^{-1}]$ is replaced by an arbitrary commutative ring $R$. 
+That is, one considers the Lie algebra $\fg_R = \fg \tensor R$ where the Lie bracket is defined by 
+\[
+[X \tensor r, Y \tensor s] = [X,Y] \tensor rs .
+\]
+It is shown that there exists a universal central extension of the form
+\[
+H_2^{\rm Lie}(\fg_R) \to \Hat{\fg}_R \to \fg_R .
+\]
+Furthermore, when $\fg$ is simple there is an isomorphism of the Lie algebra homology $H_2(\fg_R) \cong \Omega^1_R / \d R$ where $\Omega^1_R$ is the $R$-module of K\"{a}hler differentials and the quotient is by all exact differentials. 
+We will review the precise form of the cocycle defining this central extension below. 
+
+In this paper, we start with the data of a finite dimensional Lie algebra $\fg$ equipped with an invariant symmetric form and a holomorphic fibration $\pi : Y \to X$. 
+To such data we will associate an extension of local Lie algebras \brian{??}.
+In the case that $Y = X$ is a Riemann surface and $\pi$ is the identity, the extension of local Lie algebras is modest enhancement of the usual affine algebra.
+
+
+\section{Lie algebras and vertex algebras}
+\subsection{Lie algebras, $\Linf$ algebras, and central extensions}
+
+
+Given a complex Lie algebra $\fg$ with invariant bilinear form $\ip$, and a $\CC$-algebra $R$, $ \fg_{R} := \fg \otimes_{\CC} R$ carries a natural Lie algebra structure with bracket
+\[
+[X \otimes r, Y \otimes s] = [X,Y] \otimes rs.
+\]
+By a result of Kassel ~\cite{Kassel}, the universal central extension $\fghat_{R}$ of $\fg_{R}$ can be described as follows. As an $R$-module, it is given by
+\begin{equation} \label{uce}
+\fghat_{R} := \fg_{R} \oplus \Omega^1_{R} / \d R ,
+\end{equation}
+where $\Omega^1_{R}$ denotes the K\"{a}hler differentials of $R/\CC$ and $\d: R \rightarrow \Omega^{1}_{R}$ is the universal derivation.
+The Lie bracket is defined by
+\[
+[X \otimes r, Y \otimes s] =  [X,Y] \otimes rs + \overline{\langle X, Y \rangle s dr} . 
+\]
+The first term is an element of $\fg \tensor R$ and second terms lies in the summand $\Omega^1_{R} / \d R$. 
+We have an exact sequence of $R$-modules
+\[
+\ses{\Omega^1_{R} / \d R}{\fghat_{R}}{\fg_{R}},
+\]
+exhibiting $\fghat_R$ as a central extension of $\fg \tensor R$. 
+
+\begin{rmk}
+When $\fg$ is semi-simple \brian{Killing form}.
+\end{rmk}
+
+\begin{eg}
+
+Let $n \geq 0$ be an integer.
+An important class of examples is obtained by taking
+\[
+R := \CC[t^{\pm 1}_0, \cdots, t^{\pm -1}_n] .
+\]
+This is the algebra of functions on the $(n+1)$-dimensional algebraic torus. 
+
+When $n=0$, the vector space $\Omega^1_R / \d R$ is one-dimensional with an explicit isomorphism given by the residue
+\[
+{\rm Res} : \Omega^1_R / \d R \xto{\cong} \CC . 
+\]
+The resulting Lie algebra $\fghat_R$ is the ordinary affine algebra usually denoted by $\Hat{\fg}$. 
+ 
+For any $n \geq 1$ the vector space $\Omega^{1}_R / \d R$ is infinite dimensional. 
+Indeed, let us denote $k_i = t_i^{-1} \d t_i$. 
+The space $\Omega^1_{R} / \d R$ is generated over the ring $\CC[t_0^{\pm 1}, \ldots, t_n^{\pm 1}]$ by the symbols $k_0,\ldots, k_n$ subject to the relation
+\[
+\sum_{i = 0}^n m_i t_0^{m_0} \cdots t_n^{m_n} k_i = 0
+\]
+where $(m_0,\ldots, m_n)$ is any $n$-tuple of integers.
+The Lie algebra $\Hat{\fg}_R$ is called the $(n+1)$-{\em toroidal} Lie algebra associated to $\fg$.
+
+\end{eg}
+
+\matt{Something about $\Linf$ algebras, maybe in an appendix ?}
+
+It will be useful for us to have an $L_\infty$-model for the Lie algebra $\fghat_{R}$. 
+This model amounts to replacing the $R$-module $\Omega^1_R / \d R$ appearing as the central term by the cochain complex
+\[
+\cK_{R} = \Ker (\d) [2] \to R[1] \xto{\d} \Omega^{1}_{R} .
+\]
+Just as the Lie algebra $\fghat_R$ is a central extension of $\fg_R = \fg \tensor R$, the $L_\infty$ model we wish to construct is a central extension of $\fg_R = \fg \tensor R$ by the cochain complex $\cK_R$. 
+ 
+The central extension is determined by a cocycle $\phi \in C^*(\fg_R, \cK_R)$ of total degree two.
+The cocycle is of the form $\phi = \phi^{(0)} + \phi^{(1)}$ where
+\[
+\begin{array}{ccccc}
+\phi^{(1)} & : & (\fg_{R})^{\otimes 2} & \rightarrow & \Omega^1_{R} \\
+& & (X \otimes r) \otimes (Y \otimes s) & \mapsto & \langle X, Y \rangle (s \d r - r \d s)
+\end{array}
+\]
+and 
+\[
+\begin{array}{ccccc}
+\phi^{(0)} & : & (\fg_{R})^{\otimes 3} & \rightarrow & R \\
+& & (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t) & \mapsto &\langle [X,Y], Z \rangle rst
+\end{array}
+\]
+
+\begin{lemma}
+The functional $\phi$ defines a cocycle in $C^*(\fg_{R}, \cK_{R}) $ of total degree two.
+\end{lemma}
+\begin{proof}
+The differential in the cochain complex $C^*(\fg_R , \cK_R)$ is of the form $\d + \d_{CE}$ where $\d$ is the de Rham differential defining the complex $\cK_R$, and $\d_{CE}$ is the Chevalley-Eilenberg differential encoded by the Lie bracket of $\fg_R$.
+Immediately, we find
+\[
+(\d_{CE}\phi^{(1)})(X \tensor r, Y \tensor s, Z \tensor t) = .... 
+\]
+Similarly, $(\d \phi^{(0)})(X \tensor r, Y \tensor s, Z \tensor t) = ...$
+\brian{check signs and conventions.}
+The formulas above imply $(\d_{CE} + \d) \phi = 0$ as desired.
+\end{proof}
+
+The cocycle $\phi$ defines an $L_{\infty}$ central extension
+\[
+\cK_R \to \Tilde{\fg}_R \to \fg_R .
+\]
+As an $R$-module, $\fgtil_{R} = \fg_R \oplus \cK_R$, and the $L_\infty$ operations are defined by $\ell_1 = \d, \ell_2 = [,] + \phi^{(1)}$, and $\ell_3 = \phi^{(0)}$.
+The following is immediate from our definitions:
+
+\begin{lemma}
+There is an isomorphism of Lie algebras
+$H^{*}(\fgtil_{\R}, \ell_1) = \fghat_{\R}.$
+\end{lemma} 
+\begin{proof}
+The cohomology of $\Tilde{\fg}_R$ is concentrated in degree zero, and as an $R$-module is given by $\fg_R \oplus H^0(\cK_R) = \fg_R \oplus \Omega^1_R / \d R$. 
+It is clear from our definition of $\phi$ that the resulting Lie bracket is the same as that of $\Hat{\fg}_R$. 
+\end{proof}
+
+\subsection{Vertex algebras}
+
+We proceed to briefly recall the basics of vertex algebras and discuss an important class of examples, which will later be constructed geometrically via factorization algebras. We refer the reader to ~\cite{FBZ, Kac} for details. 
+
+\begin{dfn}
+A vertex algebra $(V,\vac, T, Y)$ is a complex vector
+space $V$ along with the following data:
+\begin{itemize}
+\item A vacuum vector $\vac \in V$.
+\item A linear map $T : V \to V$ (the translation operator).
+\item A linear map $Y(-,z) : V \to {\rm End}(V)\llbracket z^{\pm 1}
+  \rrbracket$ (the vertex operator). We write $Y(v,z) = \sum_{n \in \mathbb{Z}} A_n^v z^{-n}$
+  where $A_n^v \in {\rm End}(V)$. 
+\end{itemize} 
+satisfying the following axioms:
+\begin{itemize}
+\item For all $v,v' \in V$ there exists an $N \gg 0$ such that $A_n^v
+  v' = 0$ for all $n > N$. (This says that $Y(v,z)$ is a {\it field}
+  for all $v$). 
+\item (vacuum axiom) $Y(\vac, z) = {\rm id}_V$ and
+    $Y(v,z)  |0\> \in v + z V \llbracket z \rrbracket$ for all
+    $v \in V$. 
+\item (translation) $[T,Y(v,z)] = \partial_z Y(v,z)$ for all $v \in
+  V$. Moreover $T \vac = 0$. 
+\item (locality) For all $v,v' \in V$, there exists $N \gg 0$ such
+  that 
+\[
+(z-w)^N[Y(v,z),Y(v',w)] = 0
+\]
+in ${\rm End}(V) \llbracket z^{\pm 1},w^{\pm 1}\rrbracket$. 
+\end{itemize}
+\end{dfn}
+
+
+In order to prove that a given $(V,\vac,T,Y)$ forms a vertex algebra, the following "reconstruction" or "extension" theorem is very useful. It shows that any collection of local fields generates a vertex algebra in a suitable sense. 
+
+\matt{we should throw in some references to Li and friends, since this theorem has been "discovered" in a number of different papers}
+
+\begin{theorem}[~\cite{FBZ}, ~\cite{DSK}] \label{rec_thm} Let $V$ be a complex vector space equipped with: an
+  element $\vac \in V$, a linear map $T : V \to V$, a 
+    set of vectors $\{a^s\}_{s \in S} \subset V$ indexed by a set $S$, and fields $A^s(z) =
+    \sum_{n \in \mathbb{Z}} A_n^sz^{-n-1}$ for each $s\in S$ such that:
+\begin{itemize}
+\item For all $s \in S$, $A^s(z) \vac \in a^s + z V\llbracket
+    z\rrbracket$;
+\item $T \vac = 0$ and $[T,A^s(z)] = \partial_z A^s(z)$;
+\item $A^s(z)$ are mutually local;
+\item and $V$ is spanned by $\{A_{j_1}^{s_1} \cdots A_{j_m}^{s_m}
+  |0\>\}$ as the $j_i's$ range over negative integers. 
+\end{itemize}
+Then, the data $(V,\vac, T,Y)$ defines a unique vertex algebra satisfying 
+\[
+Y(a^s,z) = A^s(z) .
+\]
+\end{theorem}
+
+\begin{rmk}
+The version stated above appears in ~\cite{DSK}, and is slightly more general than the version stated in ~\cite{FBZ}. 
+\end{rmk}
+
+\subsection{The vertex algebras $V_{k}(\fg)$ and $V(\fghat_{\R})$}
+
+Many vertex algebras are constructed from vacuum representations of affine Lie algebras and their generalizations. We proceed to review the vertex algebra structure on the affine Kac-Moody vacuum module $V_{k}(\fg)$ and extend the construction to vacuum representations of $\fghat_{R}$, where $R=A[t,t^{-1}]$ for some $\CC$-algebra $A$.
+
+\subsubsection{$V_{k}(\fg)$}
+Let $\fghat = \fg[t,t^{-1}] \oplus \CC K$ be the affine Kac-Moody algebra, $\fghat^{+} = \fg[t] \oplus \CC K$ denote the positive sub-algebra, and $\CC[k]$ denote the representation of $\fghat^{+}$ on which $\fg[t]$ acts by $0$ and $K$ acts by multiplication by $k$.
+For $J \in \fg$, denote $J \otimes t^n$ by $J_n$, and $1 \in \CC[k]$ by $\vac$
+
+It is well-known (see for instance ~\cite{FBZ}) that the induced vacuum representation
+\[
+V (\fg) := \on{Ind}^{\fghat}_{\fghat^+} \CC[k]
+\] 
+has a $\CC[k]$-linear vertex algebra structure, which is generated, in the sense of the above reconstruction theorem, by the fields
+\[
+J^i (z) := Y(J^{i}_{-1} \vac, z) = \sum_{n \in \mathbb{Z}} J^i_n z^{-n-1},
+\]
+where $\{ J^{i} \}$ is a basis for $\fg$. These satisfy the commutation relations
+\[
+[J^i(z), J^{k}(w)] = [J^{i}, J^{k}](w) \delta(z-w) +  \langle J^{i}, J^{k} \rangle k \partial_w \delta(z-w)
+\]
+where 
+\[
+\delta(z-w) = \sum_{m} z^{m} w^{-m-1} 
+\]
+The translation operator $T$ is determined by the properties
+\[
+T \vac =0, [T, J^i_n] = -n J^{i}_{n-1}.
+\]
+
+
+\subsubsection{$V(\fghat_{\R})$}
+
+In this section we define the toroidal version of the Kac-Moody vertex algebra.
+This is a class of vertex algebras associated to the Lie algebra $\fghat_R$ (or its $L_\infty$-model $\Tilde{\fg}_R$) in the same way the vertex algebra $V_k(\fg)$ is related to the affine Lie algebra.
+
+%The vertex algebra structure on $V_{k}(\fg)$ may be generalized to vacuum representations of $\fghat_{\R}$, in the case where $\R = A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$ for some $\CC$-algebra $A$. 
+
+
+Let $A$ be a $\CC$-algebra, $R=A[t,t^{-1}] := A \otimes \CC[t,t^{-1}]$, and $\fghat_{R}$ the Lie algebra (\ref{uce}). 
+%We will assume that $A$ has a countable $\mathbb{C}$-basis $\{ f^r \}_{r \in \mathbb{N}}$, and so $\{ f^r t^s \}_{r \in \mathbb{N}, s \in \mathbb{Z}} $ is a countable basis for $A[t,t^{-1}]$. 
+% If $J \in \fg$, we denote by $J_n f^r$ the element $J \otimes f^r t^{n} \in \fg \otimes A[t,t^{-1}]$. 
+Note the natural embedding of vector spaces
+\[
+\Omega^1_{A[t]}/ d A[t] \cong \left(\Omega^1_A / \d A\right) [t] \hookrightarrow \Omega^{1}_{R} / d R .
+\]
+Correspondingly, there is the Lie subalgebra 
+\[
+\fghat^{+}_{R} := \fg \tensor A [t] \oplus \Omega^1_{A[t]}/ d A[t] \hookrightarrow \fghat_R .
+\]
+Note that unlike $\fghat_R$, the Lie subalgebra $\fghat^+_R$ splits as a direct sum.
+\brian{In the case that $A=\CC$ this seems to give $\fghat^+_R = \fg [t]$ since all one-forms on $\CC[t]$ are exact. 
+This is probably not what we want, since in the case of the Kac-Moody, the annihilation subalgebra is of the form $\fg[t] + \CC$.
+Should we take
+\[
+\fghat^+_R = \fg \tensor A[t] \oplus \Omega^1_R / \d R ??
+\]
+}
+
+\brian{I'm now confused by this definition of the vacuum module.
+Do we really want to induce up the trivial $\fg \tensor A[t]$-module? In this case it is unclear how the central term should act.
+If my guess above is correct, we could fix an action by fixing a homomorphism
+\[
+\rho : \Omega^1_R / \d R \to \CC .
+\]
+In the case $A=\CC$, to get level $k$ Kac-Moody you take $\rho$ to be $k$ times the residue pairing.
+}
+Define the $\fghat_R$-module
+\begin{equation}
+V(\fghat_{R}) := \on{Ind}^{\fghat_{R}}_{\fghat^+_{R}} AHHHH
+\end{equation}
+Our goal is to define the structure of a vertex algebra on $V(\fghat_R)$. 
+
+Unsurprisingly, the vacuum vector is simply $\vac := 1 \in \CC$
+In the notation below we let $f \in A$, $\omega \in \Omega^1_A / \d A$, and $\{J^i\}$ is a basis for $\fg$. 
+The fields of the vertex algebra split into three classes and are defined as follows. 
+
+\begin{align}
+J^i_f(z) := Y(J^{i} \otimes f t^{-1} \vac,z ) & := \sum_{n \in \mathbb{Z}} (J^i  \otimes f t^{n}) z^{-n-1}, \\
+K_{f \frac{dt}{t}} :=  Y(t^{-1} f dt \vac,z ) & := \sum_{n \in \mathbb{Z}} ( f t^{n-1} dt )  z^{-n}, \\
+K_{t^{-1} \omega} := Y(t^{-1}  \omega \vac,z ) & := \sum_{n \in \mathbb{Z}}( t^{n} \omega )    z^{-n-1} \\
+\end{align}
+where $J\in \fg, f \in A, \omega \in \Omega^{1}_A$. 
+
+The commutation relations between these fields are easily checked to be
+$$
+[J^1_f (z), J^2_g (w)] = \left( [J^1, J^2]_{fg} (w) + \langle J^1, J^2 \rangle  K_{t^{-1} g df} (w)      \right) \delta(z-w) + \langle J^1, J^2 \rangle K_{fg \frac{dt}{t}} (w) \partial_w \delta(z-w)
+$$
+$$
+[J(z), K_{f \frac{dt}{t}}(w) ] = [J(z), K_{t^{-1} \omega} (w)] = [ K_{f \frac{dt}{t}}(z),  K_{t^{-1} \omega} (w)] =0
+$$
+
+The operator $T$, corresponding to the Lie derivative $L_{-\partial_t}$, is defined by
+\[
+T \vac =0, \; [T, J^i \otimes f t^n] = -n J^i \otimes f t^{n-1}, \; [T, f t^n dt] = -n f t^{n-1} dt, \; [T, t^n \omega] = -n t^{n-1} \omega
+\]
+
+\begin{theorem}
+The above field assignments, together with $T$ equip $V(\fghat_{\R})$ with the structure of a vertex algebra.
+\end{theorem}
+
+\begin{proof}
+We begin by checking that the field assignment above is well-defined. This amounts to verifying that $Y(d(t^{-1}f)\vac,z ) =0$.  We have 
+\begin{align*}
+Y(d(t^{-1}f) \vac, z) &= Y(t^{-1} df \vac, z) - Y(f t^{-2} f \vac, z) \\
+&= Y(t{-1} df \vac, z) - Y([T, t^{-1}f dt  ] \vac, z) \\
+&= Y(t^{-1} df \vac, z) - \partial_z Y( t^{-1} f dt \vac, z) \\
+&= \sum_{n} (t^n df + n t^{n-1} f) z^{-n-1} = \sum_{n} d(t^n f) z^{-n-1} = 0
+\end{align*}
+The result now follows by applying the reconstruction theorem \ref{rec_thm} to $V(\fghat_\R)$ and the fields $\{ J_f (z), K_{f \frac{dt}{t}}, K_{t^{-1} \omega} \}$ for $f \in A, \omega \in \Omega^{1}_A $.
+\end{proof}
+
+\section{(Pre)-factorization algebras and examples}
+
+In this section we briefly recall basic notions pertaining to pre-factorization algebras and their relationship with vertex algebras. We refer the reader to \cite{CG} for details. Our summary closely follows the presentation given in \cite{} {\color{red} Owen-Kasia}. 
+
+Let $M$ be a smooth manifold, and $\symcat$ a symmetric monoidal category. 
+%Let $\Open(M)$ denote the poset category whose objects are opens in $M$ and where a morphism is an inclusion.
+%A factorization algebra will be a functor from $\Open(M)$ to a symmetric monoidal category $\bC ^\otimes$ equipped with further data and satisfying further conditions.
+%We will explain this extra information in stages.
+%(Note that almost all the definitions below apply to an arbitrary topological space, or even site with an initial object, and not just smooth manifolds.)
+
+\begin{dfn}
+A {\it prefactorization algebra} $\Fcal$ on $M$ with values in $\symcat$ consists of the following data:
+\begin{itemize}
+\item for each open $U \subset M$, an object $\Fcal(U) \in \symcat $,
+\item for each finite collection of pairwise disjoint opens $U_1,\ldots,U_n$ and an open $V$ containing every $U_i$, a morphism
+\[
+\Fcal(\{U_i\}; V): \Fcal(U_1) \otimes \cdots \otimes \Fcal(U_n) \to \Fcal(V),
+\]
+\end{itemize}
+and satisfying the following conditions:
+\begin{itemize}
+\item composition is associative, so that the triangle
+\[
+\begin{tikzcd}
+\bigotimes_i \bigotimes_j \Fcal(T_{ij}) \arrow{rr} \arrow{rd} &&\bigotimes_i \Fcal(U_{i}) \arrow{ld} \\
+&\Fcal(V)&
+\end{tikzcd}
+\]
+commutes for any collection $\{U_i\}$, as above, contained in $V$ and for any collections $\{T_{ij}\}_j$ where for each $i$, the opens $\{T_{ij}\}_j$ are pairwise disjoint and each contained in $U_i$,
+\item the morphisms $\Fcal(\{U_i\}; V)$ are equivariant under permutation of labels, so that the triangle
+\[
+\begin{tikzcd}
+\Fcal(U_{1}) \otimes \cdots \otimes \Fcal(U_n) \arrow{rr}{\simeq} \arrow{rd} && \Fcal(U_{\sigma(1)}) \otimes \cdots \otimes \Fcal(U_{\sigma(n)}) \arrow{ld}\\
+&\Fcal(V)&
+\end{tikzcd}
+\]
+commutes for any $\sigma \in S_n$.
+\end{itemize}
+\end{dfn}
+
+In this paper, we will take the target category $\symcat$ to be either $\Vect$ or $\dgVect$. 
+
+A {\it factorization algebra} is
+a prefactorization algebra satisfying a descent axiom. Descent for
+ordinary sheaves (or cosheaves) says that one can recover the value of
+the sheaf on large open sets by breaking it up into smaller
+opens. That is, if $\scr{U} = \{U_i\}$ is a cover of $U \subset M$
+then a presheaf $\Fcal$ of vector spaces is a sheaf iff 
+\[
+\begin{tikzcd}
+\Fcal(U) \arrow[r, shift left] & \bigoplus_i \Fcal(U_i)
+\arrow[r, shift left] \arrow[r, shift right] & \bigoplus_{i,j} \Fcal(U_i \cap U_j) 
+\end{tikzcd}
+\]
+is an equalizer diagram for all opens $U$ and covers $\scr{U}$. It is convenient to introduce the \v{C}ech
+complex associated to $\scr{U}$. The $p$th space is
+\[
+\check{C}^p(\scr{U},\Fcal) := \bigoplus_{i_0,\ldots,i_p}
+\Fcal(U_{i_0} \cap \cdots \cap U_{i_p}) .
+\]
+The differential $\check{C}^p \to \check{C}^{p+1}$ is induced from the
+natural inclusion maps $$U_{i_0} \cap \cdots \cap U_{i_p}
+\hookrightarrow U_{i_0} \cap \cdots \cap \Hat{U}_{i_j} \cap \cdots
+\cap U_{i_p}. $$ The sheaf condition is equivalent to saying that the
+natural map
+\[
+\begin{tikzcd}
+\Fcal(U) \to {\rm H}^0(\check{C}(\scr{U},\Fcal)) 
+\end{tikzcd}
+\]
+is an isomorphism. There is a similar construction for cosheaves, but
+the arrow goes in the opposite direction. 
+
+The descent condition for factorization algebras is formulated with respect to a different topology, that is, for
+only a special class of open covers. Call an open cover $\scr{U} = \{U_i\}$ of
+$U \subset M$ a {\it Weiss cover} if for any finite collection of points
+$\{x_1,\ldots,x_k\}$ in $U$, there exists an open set $U_i$ such that
+$\{x_1,\ldots,x_k\} \subset U_i$. This is equivalent to providing a
+topology on the Ran space. 
+
+A Weiss cover defines a Grothendieck topology on ${\rm
+    Op}(M)$, the poset of opens in $M$. 
+    
+\begin{dfn}    
+    A {\it factorization algebra}
+  on $M$
+  is a prefactorization algebra on $M$ that is, in addition, a
+  homotopy cosheaf for the Weiss topology. 
+\end{dfn}  
+
+When $\scr{C}^\tensor = {\rm dgVect}$ we can be explicit about this
+homotopy gluing condition using a variant of the \v{C}ech complex
+above. Let $\Fcal$ be a cosheaf of dg vector spaces. For $\scr{U} = \{U_i\}_{i \in I}$ let
+$\check{C}^p(\scr{U}, \Fcal)$ be the complex
+\[
+\begin{tikzcd}
+\bigoplus_{i_0,\ldots,i_p} \Fcal(U_{i_1} \cap \cdots \cap U_{i_k})
+[p-1] 
+\end{tikzcd}
+\]
+with differential inherited from $\Fcal$. Then
+$\check{C}(\scr{U},\Fcal)$ is a bigraded object. The differential is the total differential obtained from
+combining the ordinary
+\v{C}ech differentials above plus the internal differential of
+$\Fcal$. The cosheaf
+condition is that the natural map
+\[
+\begin{tikzcd}
+\check{C}(\scr{U},\Fcal) \to \Fcal(U)
+\end{tikzcd}
+\]
+is an equivalence for all Weiss covers $\scr{U}$ of $U$. 
+
+\subsection{Factorization Lie algebras and factorization envelopes}
+
+An important class of examples of (pre)factorization algebras is given by the \emph{factorization envelope} construction, which we proceed to review in this section.
+
+Let $\cL$ be a fine sheaf of Lie algebras on $M$. 
+
+\matt{explain factorization envelopes}
+
+\begin{enumerate}
+\item Factorization Lie algebras
+\item Compactly supported sections of a local Lie algebra is a factorization Lie algebra
+\item Pushforward of local Lie algebra is a factorization Lie algebra
+\item factorization envelopes as examples of factorization algebras
+\item relations with vertex algebras in one dimension. 
+\end{enumerate}
+
+
+
+\subsection{Translation-invariant (pre)factorization algebras}
+
+Suppose now that $\sF$ is prefactorization algebra on $\mathbb{R}^n$ n the appropriate category of
+differentiable vector spaces. \footnote{Some care is needed to
+  define this category correctly. We refer the interested reader to
+  \cite{CG}}. $\mathbb{R}^n$ acts on itself by translations. For an open subset $U \subset \mathbb{R}^n$ and $x \in \mathbb{R}^n$, let 
+\[
+\tau_x U := \{ y \in \mathbb{R}^n \vert y-x \in U \}
+\]
+Clearly, $\tau_x (\tau_y U) = \tau_{x+y} U$. We say that $\sF$ is \emph{translation-invariant} if we are given isomorphisms
+\[
+\phi_x : \sF(U) \rightarrow \sF(\tau_x U)
+\]
+for each $x \in \mathbb{R}^n$ compatible with composition and the structure maps of $\sF$. We refer to section 4.8 of  \cite{CG} for details. 
+
+\begin{eg}
+For any Lie algebra $\fg$, the factorization envelope $\U(\fg \otimes \Omega^*_{\mathbb{R}^n})$ of section ?? is translation-invariant. 
+\end{eg}
+
+If $\sF$ is a
+prefactorization algebra on $\CC^n$, we can further refine the notion of translation-invariance. 
+We say that $\sF$ is {\it holomorphically translation invariant}
+if
+\begin{itemize}
+\item $\sF$ is translation invariant. 
+\item There exists a degree $-1$ derivation $\eta: \sF \to
+  \sF$ such that $\dd \eta = \partial_{\Bar{z}}$ as derivations of
+  $\sF$. 
+\end{itemize}
+
+This condition means that anti-holomorphic vector fields act homotopically trivially on $\sF$. 
+
+\begin{eg}
+For any Lie algebra $\fg$, the holomorphic factorization envelope $\U(\fg \otimes \Omega^{0,*}_{\CC^n})$ is holomorphically translation-invariant, with \matt{elaborate what $\eta$ is here}.
+\end{eg}
+
+
+\subsection{$S^1$-equivariant factorization algebras on $\CC$ and vertex algebras}
+
+In order to build a bridge between the world of prefactorization algebras on $\CC$ and vertex algebras, we will need to consider prefactorization algebras possessing a type of $S^1$-equivariance, which we proceed to review. 
+
+The last piece of data we need corresponds to the ``conformal
+decomposition'' of a vetex algebra. For us, this will come from an
+$S^1$-action on $\sF$. The reader is encouraged to look at
+\cite{CG} for a precise definition, but we assume that we have a {\it
+  nice} action of $S^1$ on $\sF$ and it is compatible with the
+translation invariance discussed above. 
+
+We can now read off the data of the
+vertex algebra from $\sF$:
+
+\begin{itemize}
+\item Let $\sF^{(l)}(r) \subset \sF(r)$ be the $l$th eigenspace for the $S^1$-action. The underlying vector
+space for the vertex algebra is
+\[
+V := \bigoplus_l {\rm H}^*(\sF^{(l)}(r)) .
+\]
+\item The translation operator. The action of $\partial_z$ on $\sF^{(l)}(r)$ has the form
+\[
+\partial_z : \sF^{(l)}(r) \to 
+\sF^{(l-1)}(r) .
+\]
+We let $T : V \to V$ be the operator which is $\partial_z$ restricted
+to the $l$-th eigenspace. 
+\item The fields. Consider the map
+\[
+\mu_{z,0} : \left(\lim_{r \to 0} {\rm
+    H}^*(\sF(r))\right)^{\tensor 2} \to {\rm Hol}\left({\rm
+  Conf}_2(\CC), {\rm H}^*(\sF(\CC))\right)
+\]
+defined above. Certainly, we have a map $V
+  \to \lim_{r \to 0} {\rm
+    H}^*(\sF(r))$, so it makes sense to resctict $\mu_{z,0}$ to a
+  map 
+\[
+V \tensor V \to {\rm Hol}\left({\rm Conf}_2(\CC), {\rm
+    H}^*(\sF(\CC))\right) \simeq {\rm Hol}\left(\CC^\times, {\rm
+    H}^*(\sF(\CC))\right) .
+\]
+Post composing this with the projection maps $H^*(\sF(\infty)) \to
+V_l$ combine to define the map
+\[
+\Bar{\mu}_{z,0} : V \tensor V \to \prod_l {\rm Hol}(\CC^\times, V_l)
+\]
+We can perform Laurent expansions to view this as
+\[
+\Bar{\mu}_{z,0} : V \tensor V \to \Bar{V} \llbracket z^{\pm 1}
+\rrbracket .
+\]
+We define $Y(-,z) : V \to {\rm End}(V)\llbracket z^{\pm 1}\rrbracket$ by
+\[
+Y(v,z) v' \; := \; \Bar{\mu}_{z,0}(v,v') .
+\]
+One can show that this actually lies in $V((z))$ for all $v,v'$. 
+\end{itemize}
+
+The above can be made much more precise and made into the following
+theorem. 
+
+\begin{theorem}[Theorem 5.2.2.1 \cite{CG1}] \label{fv} Let $\sF$ be a $S^1$-equivariant holomorphically translation invariant factorization algebra on $\CC$. Suppose
+\begin{itemize}
+\item The action of $S^1$ on $\sF(r)$ extends smoothly to an action of the algebra of distributions on $S^1$. 
+\item For $r < r'$ the map 
+\[
+\sF^{(l)}(r) \to \sF^{(l)}(r')
+\]
+is a quasi-isomorphism.
+\item The cohomology ${\rm H}^*(\sF^{(l)}(r))$ vanishes for $l \gg 0$.
+\item For each $l$ and $r > 0$ we require that ${\rm H}^*(\sF^{(l)}(r))$ is isomorphic to a countable sequential colimit of finite dimensional vector spaces. 
+\end{itemize}
+Then $\mathbb{V}{\rm ert} (\sF) := \oplus_l {\rm H}^*(\sF^{(l)}(r))$ (which is independent of $r$ by assumption) has the structure of a vertex algebra.
+\end{theorem}
+
+Let ${\rm PreFact}_\CC$ denote the category of prefactorization
+algebras on $\CC$. Let ${\rm PreFact}^{\rm hol}_\CC \subset {\rm
+  PreFact}_\CC$ be the full subcategory spanned by prefactorization
+algebras satisfying the conditions of the above theorem. This result
+can be upgraded to provide a functor
+\[
+\mathbb{V}{\rm ert} : {\rm PreFact}^{\rm hol}_\CC \to {\rm Vert}
+\]
+where ${\rm Vert}$ is the category of vertex algebras. 
+
+\section{Factorization algebras from holomorphic fibrations}
+
+In this section, we describe our main construction factorization algebras from locally trivial holomorphic fibrations. 
+
+\subsection{The local case - trivial fibrations}
+
+Let us begin with the following data:
+\begin{itemize}
+\item a complex manifold $F$
+\item $X = \CC^n, n \geq 1$
+\item $E = X \times F$, with $\pi: E \mapsto X $ the canonical projection
+\item $(\fg, \langle, \rangle)$ a Lie algebra with an invariant bilinear form.
+\end{itemize}
+
+We note that $\fg_E := (\fg \otimes \Omega^{0,*}_E, \delbar)$ forms a sheaf of DGLA's on $E$, and
+set
+\[
+\cK_E := \on{Tot} ( \Omega^{0,*} \overset{\partial}{\longrightarrow} \Omega^{1,*})
+\]
+(i.e. $\cK_E$ is the totalization of the double complex of forms $\Omega^{p,q}_E$ with $p \leq 1$), Denote by $d_{\cK_E}$ the total differential of $\cK_E$. 
+Let 
+
+$$ \phi^{(1)}: (\fg_{E})^{\otimes 2} \rightarrow \Omega^(1,*)_{E} $$
+$$ \phi^{(1)} ((X \otimes r) \otimes (Y \otimes s)) = \langle X, Y \rangle (s \del r - r \del s) $$
+and 
+$$ \phi^{(0)}: (\fg_{E})^{\otimes 3} \rightarrow \Omega^{0,*}_E $$
+$$ \phi^{(0)}( (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t)) = \langle [X,Y], Z \rangle rst $$
+We may view $\phi = \phi^{(0)} + \phi^{(1)}$ as an cochain in the cohomological Chevalley-Eilenberg complex $$ \CEcoh(\fg_{E}, \cK_{E}) $$ of total degree $2$.
+
+\begin{lemma}
+$\phi$ defines a cocycle in $\CEcoh(\fg_{\E}, \cK_{E}) $ of total degree $2$.
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
+We may use the cocycle $\phi$ to equip 
+\begin{equation}
+\fghat_{E} := \fg \otimes \Omega^{0,*}_E \oplus \cK_{E}
+\end{equation}
+with the structure of a local $L_{\infty}$ central extension. Explicitly, this means that $\wt{d} = d + d_{CE} + \phi$ is a differential of cohomological degree $1$ on the complex of sheaves on $E$
+\[
+C^{*}(\fghat_E) := \on{Sym}(\fghat_E[1]),
+\]
+where 
+\begin{itemize}
+\item $d = \delbar + d_{\cK_E}$ is the differential on $\fghat_E$ (with the summands acting on $\fg_E, \cK_E$ respectively)
+\item $d_{CE}$ is the Chevalley-Eilenberg differential of $\fg_E$
+\item $\phi$ is extended to $\on{Sym}(\fghat_E[1])$ as a derivation
+\end{itemize}
+
+Let 
+\begin{equation}
+\fghat_{X,E} = \pi_*(\fghat_E)
+\end{equation}
+
+
+\begin{lemma}
+$\fghat_{X,E}$ has the structure of a pro-local $L_{\infty}$--algebra on $X$
+\end{lemma}
+
+\subsubsection{The factorization algebra $\sF_{E,X}$}
+
+We proceed to construct a factorization algebra on $X$ from $\fghat_{X,E}$. For an open set $U \subset X$, let
+\begin{equation}
+\fghat^c_{X,E}(U) = \Gamma_c (U, \fghat_{X,E})
+\end{equation}
+be the co-sheaf of sections with compact support of $\fghat_{X,E}$. $\fghat^c_{X,E}$ has the structure of a complex of pre-cosheaves of $L_{\infty}$ algebras on $X$. 
+
+Let
+\begin{equation}
+\sF_{X,E} := C_{*} ( \fghat_{X,E} )
+\end{equation}
+be the corresponding homology Chevalley-Eilenberg compex, which for each open $U \subset X$ assigns the complex
+\[
+\sF_{X,E}(U) = C_{*} (\fghat^c_{X,E}(U))
+\]
+
+\begin{theorem}
+$\sF_{X,E}$ has the structure of a holomorphically translation-invariant factorization algebra on $X=\CC^n$. 
+\end{theorem}
+
+\brian{We still need to check that $\pi_* \fg_E$ has the structure of a "pro-local" Lie algebra on the base space. 
+Even in the case of vector bundles, pushing forward along non-proper maps seems to be a pretty hairy thing to do.
+For instance, it'd be nice if we could find any reference for the following situation: given a fibration $\pi : Y \to X$ (holomorphic for us) and a vector bundle on the total space $V \to Y$, what conditions on $\pi$ guarantee that one can define a vector bundle $\pi_* V$ on $X$. 
+I'm miffed about any case in which the fiber is not compact. 
+}
+
+\brian{
+As a more hands on approach to this construction, let me try out the following. 
+Suppose $V$ is a vector bundle on the total space of a fibration $\pi : Y \to X$ satisfying the following property: there is an open cover $\{U_\alpha\}$ on $X$ such that 
+\begin{itemize}
+\item $\pi^{-1}(U_\alpha) \cong U_\alpha \times F$, and
+\item there is an isomorphism $V|_{\pi^{-1}(U_\alpha)} \cong \pi^*V_1 \tensor \pi_F^*V_2$ where $V_1,V_2$ are vector bundles on $X,F$ and $\pi_F : U_\alpha \times F \to F$.
+\end{itemize}
+}
+
+\brian{
+For example, suppose $Y = X \times F$ is the trivial fibration and $V = \oplus_k \wedge^k T^*Y$ (so that sections of $V$ is the de Rham complex of $Y$.)
+Then, since $T^*Y = \pi^* T^*X \oplus \pi_F^* T^*F$, the bundle $V$ satisfies the conditions above. 
+}
+
+\brian{In this situation, I believe we can define a cosheaf $\Tilde{\Gamma}_{\pi, c}(-;V)$ on the base space $X$ of ``partially" compactly supported sections.}
+
+\brian{The example we need to understand first is the case of a holomorphic fibration of complex manifolds, so let's do that.
+Also, I'll assume that $V$ is just the bundle defining the Dolbeault complex, for simplicity.
+In the trivial case $Y = X \times F$, it's clear what to do: if $U \subset X$ is open, define
+\[
+\Tilde{\Omega}^{0,*}_{\pi,c} (U) = \Omega^{0,*}_c(U) \tensor \Omega^{0,*}(F) .
+\]
+In the general case $\pi : Y \to X$, we need to take advantage of local triviality to glue the cosheaf $\Tilde{\Omega}^{0,*}_{\pi, c}$. 
+Clearly, in the case that $F$ is compact, this cosheaf agrees with the usual pushforward of cosheaves.
+}
+
+\brian{
+For this case, we can define the untwisted factorization algebra immediately, since cosheaves of Lie algebras 
+
+\subsection{$dim(X)=1$ and vertex algebras}
+
+\section{Factorization homology}
+
+{\color{red}
+\begin{enumerate}
+\item Discuss factorization algebra with base a compact complex manifold and potentially non-trivial torus bundle
+\item What is factorization homology or equivalently conformal blocks
+\item Compute factorization homology for compact base and tirivial/non-trivial torus bundle
+\end{enumerate}
+}
+
+\newpage
+
+\bibliographystyle{alpha}
+%\bibliographystyle{spmpsci}  
+\bibliography{toroidal_bib}
+
+
+
+\address{\tiny DEPARTMENT OF MATHEMATICS AND STATISTICS, BOSTON UNIVERSITY, 111 CUMMINGTON MALL, BOSTON} \\
+\indent \footnotesize{\email{szczesny@math.bu.edu}}
+
+\address{\tiny DEPARTMENT OF MATHEMATICS, NORTH\brian{WESTERN/EASTERN},...}
+\indent \footnotesize{\email{brianwilliams.math@gmail.com}}
+
+\end{document}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
