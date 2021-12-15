@@ -1,0 +1,427 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{slashed}
+\linespread{1.25}
+
+\usepackage{amsrefs, mathrsfs,amsmath, amscd, amsthm,amssymb, amsfonts, verbatim,subfigure, enumerate}
+%\usepackage[mathcal]{eucal}
+\usepackage[mathscr]{euscript}
+\usepackage[all,cmtip]{xy}
+\usepackage{graphicx}
+\usepackage[top=1in, bottom=1.25in, left=1.3in, right=1.3in]{geometry}
+%\usepackage{fullpage}
+%\usepackage{epstopdf}
+%\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `basename #1 .tif`.png}
+%Use Palatino font
+
+\usepackage{mathpazo}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc,through}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pgffor}
+%\usepackage{tikz-feynman} 
+
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\tikzset{
+	% >=stealth', %%  Uncomment for more conventional arrows
+    vector/.style={decorate, decoration={snake}, draw},
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+    fermion/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    fermionbar/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    fermionnoarrow/.style={draw=black},
+    gluon/.style={decorate, draw=black,
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed,draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+    scalarbar/.style={dashed,draw=black, postaction={decorate},
+        dwecoration={markings,mark=at position .55 with {\arrow[draw=black]{<}}}},
+    scalarnoarrow/.style={dashed,draw=black},
+    electron/.style={draw=black, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow[draw=black]{>}}}},
+	bigvector/.style={decorate, decoration={snake,amplitude=4pt}, draw},
+}
+
+\pagestyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{claim}[thm]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{dfn/lem}{Definition/Lemma}
+\newtheorem{lesson}[thm]{Lesson}
+
+\theoremstyle{remark}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{construction}[thm]{Construction}
+
+
+\linespread{1.25}
+
+\usepackage{parskip}
+\setlength{\parindent}{18pt}
+\setlength{\parindent}{0cm}
+
+
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+}
+
+
+%\numberwithin{equation}{section}
+%\numberwithin{example}{section}
+%\numberwithin{definition}{section}
+
+
+%%%%%%%%%%%%%%%%%%%%%%         Defintions        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\on}{\operatorname}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Etau}{{\text{E}_\tau}}
+\newcommand{\E}{{\mathcal E}}
+%\newcommand{\F}{\mathbf{F}}
+%\newcommand{\G}{\mathbf{G}}
+\newcommand{\eps}{\epsilon}
+%\newcommand{\g}{\mathbf{g}}
+\newcommand{\im}{\op{im}}
+%%%%%%%%%%%%%%%%%%%%%%         Functions         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abracket}[1]{\left\langle#1\right\rangle}
+\newcommand{\bbracket}[1]{\left[#1\right]}
+\newcommand{\fbracket}[1]{\left\{#1\right\}}
+\newcommand{\bracket}[1]{\left(#1\right)}
+\providecommand{\from}{\leftarrow}
+\newcommand{\bl}{\textbf}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\cinfty}{C^{\infty}}
+\newcommand{\pa}{\partial}
+\newcommand{\prm}{\prime}
+%\renewcommand{\dbar}{\bar\pa}
+\newcommand{\OO}{{\mathcal O}}
+\newcommand{\hotimes}{\hat\otimes}
+\newcommand{\BV}{Batalin-Vilkovisky }
+\newcommand{\CE}{Chevalley-Eilenberg }
+\newcommand{\suml}{\sum\limits}
+\newcommand{\prodl}{\prod\limits}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\Ol}{\mathcal O_{loc}}
+\newcommand{\mD}{{\mathcal D}}
+\newcommand{\iso}{\cong}
+\newcommand{\dpa}[1]{{\pa\over \pa #1}}
+\newcommand{\PP}{\mathrm{P}}
+\newcommand{\Kahler}{K\"{a}hler }
+\newcommand{\Fock}{{\mathcal Fock}}
+
+
+
+\newcommand{\ol}{\overline}
+\newcommand{\nc}{\newcommand}
+\nc{\wt}{\widetilde}
+\nc{\CEcoh}{\mathcal{C}^{*}}
+
+
+
+\nc{\h}{\mathfrak{h}}
+\nc{\g}{\mathfrak{g}}
+\nc{\ghat}{\widehat{\g}}
+\nc{\n}{\mathfrak{n}}
+\nc{\F}{\mc{F}}
+\nc{\C}{\mathbb{C}}
+\nc{\delbar}{\overline{\partial}}
+\nc{\del}{\partial}
+
+\nc{\gt}[1]{\g_{\tau,#1}}
+\nc{\Gt}[1]{\mathfrak{G}_{\tau,#1}}
+\nc{\K}{\mc{K}}
+\nc{\opqm}[2]{\Omega^{#1,#2}_{m}}
+\nc{\gtil}{\wt{\g}}
+\nc{\CC}{\mathcal{C}_{*}}
+\nc{\Sym}{\on{Sym}}
+\nc{\dzbar}{d \overline{z}}
+
+\nc{\ip}{\langle \bullet , \bullet \rangle}
+\nc{\ses}[3]{0 \rightarrow #1 \rightarrow #2 \rightarrow #3 \rightarrow 0}
+
+
+\renewcommand{\Im}{\op{Im}}
+\renewcommand{\Re}{\op{Re}}
+%%%%%%%%%%%%%%%%%%%%%%     Math    Operators         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\mHom}{\mathcal{H}om}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Supp}{Supp}
+%\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Deg}{Deg}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Or}{Or}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Isom}{Isom}
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\HW}{HW}
+\DeclareMathOperator{\Eu}{Eu}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\d}{{\rm d}}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Allow display breaks within equations %%%%%%%%%%%%%%%%%%%%
+\allowdisplaybreaks[4]  %%%%%%%%%%% choose 1-4, where 4 is the strongest desire to breack
+
+\begin{document}
+
+ \title{Factorization and vertex algebras from  holomorphic fibrations}
+  \author{ Matt Szczesny, Jackson Walters, and Brian Williams}
+  \date{}
+
+  
+  \maketitle
+
+\begin{abstract}
+Let $X$ be a complex manifold, $\pi: Y \rightarrow X$ a locally trivial holomorphic fibration with fiber $F$, and $(\g, \ip )$ a Lie algebra with an invariant symmetric form. We show how to associate to this data a holomorphic factorization algebra  $\F_{Y/X}(\g)$ on $X$ in the formalism of Costello-Gwilliam via a type of pushforward operation. When $X=\mathbb{C}$, this construction produces a vertex algebra which is a vacuum module for the universal central extension of $\g \otimes H^{0}(F, \mc{O})[z,z^{-1}]$. In particular,  when $F$ is a torus $(\C^{*})^n$, we recover a vertex algebra naturally associated to an $n+1$--toroidal algebra. We give an explicit description of the chiral homology of $\F_{Y/X}(\g)$.
+\end{abstract}
+
+
+%\tableofcontents
+
+
+\section{Introduction}
+
+\section{Preliminaries}
+\subsection{Lie algebras and universal central extensions}
+
+Given a complex Lie algebra $\g$ with invariant bilinear form $\ip$, and a $\C$-algebra $\R$, $ \g_{\R} := \g \otimes \R$ carries a natural Lie algebra structure with bracket
+\[
+[X \otimes r, Y \otimes s] = [X,Y] \otimes rs.
+\]
+The universal central extension $\ghat_{\R}$ of $\g_{\R}$ fits into a short exact sequence
+\[
+\ses{\Omega^1_{\R} / \d \R}{\ghat_{\R}}{\g_{\R}}
+\]
+where $\Omega^1_{\R}$ denotes the K\"{a}hler differentials of $\R/\C$ and $\d: \R \rightarrow \Omega^{1}_{\R}$ is the universal derivation. The bracket on $\ghat_{\R}$ is given by 
+\[
+[X \otimes r, Y \otimes s] =  [X,Y] \otimes rs + \overline{\langle X, Y \rangle r ds}
+\]
+where the second term lands in the quotient $\Omega^1_{\R} / d \R$. 
+
+\begin{eg}
+
+An important class of examples is obtained by taking
+\[
+\R= \R_n := \C[w^{\pm 1}_0, \cdots, w^{\pm -1}_n]
+\]
+to be the algebra of functions on the complex $n+1$--dimensional torus $(\C^{\times})^{n+1}$. $\ghat_{\R_n}$ is called the $n+1$--toroidal Lie algebra for $n >0$ and an affine Kac-Moody algebra for $n=0$. 
+
+\end{eg}
+
+We may resolve $\ghat_{\R}$ by an $L_{\infty}$ algebra $\gtil_{\R}$ as follows. Let 
+\[
+\K_{\R} = \R[1] \overset{d}{\rightarrow} \Omega^{1}_{\R}
+\]
+and let
+$$ \phi^{(1)}: (\g_{\R})^{\otimes 2} \rightarrow \Omega^1_{\R} $$
+$$ \phi^{(1)} ((X \otimes r) \otimes (Y \otimes s)) = \langle X, Y \rangle (r ds - s dr) $$
+and 
+$$ \phi^{(0)}: (\g_{\R})^{\otimes 3} \rightarrow R[1] $$
+$$ \phi^{(0)}( (X \otimes r)\otimes(Y \otimes s) \otimes (Z \otimes t)) = \langle [X,Y], Z \rangle rst $$
+We may view $\phi = \phi^{(0)} + \phi^{(1)}$ as an cochain in the cohomological Chevalley-Eilenberg complex $$ \CEcoh(\g_{\R}, \K_{\R}) $$ of total degree $2$.
+
+\begin{lemma}
+$\phi$ defines a cocycle in $\CEcoh(\g_{\R}, \K_{\R}) $ of total degree $2$.
+\end{lemma}
+\begin{proof}
+One readily checks that $d \phi^{0} + d_{CE} \phi^{(1)} = 0 $ and $d_{CE} \phi^{0} = d \phi^{(1)} = 0$, which implies that $(d_{CE} + d) \phi = 0$.
+\end{proof}
+
+{\color{red} SIGNS !}
+We may now use $\phi$ to define an $L_{\infty}$ central extension $\gtil_{\R}$ of $\g_{\R}$. As an $\R$-module, $ \gtil_{\R} = \K \oplus \g_{\R} $, and Taylor coefficients $l_1 = d, l_2 = [,] + \phi^{(1)}$, and $l_3 = \phi^{(0)}$. The following is immediate:
+
+\begin{prop}
+$H^{*}(\gtil_{\R}, l_1) = \ghat_{\R}$
+\end{prop} 
+
+\subsection{Vertex algebras}
+\begin{enumerate}
+\item generalities
+\item Construction and structure of $V_{F}$ as a vertex algebra
+\end{enumerate}
+
+
+\subsection{(Pre)-factorization algebras}
+\begin{enumerate}
+\item Pre-factorization algebras
+\item translation-invariant pre-fact algebras
+\item holomorphically  translation-invariant pre-factorization algebras
+\item relations with vertex algebras in one dimension. 
+\end{enumerate}
+
+\section{Factorization algebras from holomorphic fibrations}
+\subsection{$dim(X)=1$ and vertex algebras}
+
+\section{Factorization homology}
+
+{\color{red}
+\begin{enumerate}
+\item Discuss factorization algebra with base a compact complex manifold and potentially non-trivial torus bundle
+\item What is factorization homology or equivalently conformal blocks
+\item Compute factorization homology for compact base and tirivial/non-trivial torus bundle
+\end{enumerate}
+}
+
+
+\newpage
+
+\begin{bibdiv}
+    \begin{biblist}
+
+\bib{CS}{article}{
+   author={Crapo, Henry},
+   author={Schmitt, William},
+   title={A free subalgebra of the algebra of matroids},
+   journal={European J. Combin.},
+   volume={26},
+   date={2005},
+   number={7},
+   pages={1066--1085},
+}
+
+\bib{CLS}{article}{
+   author={Chu, Chenghao},
+   author={Lorscheid, Oliver},
+   author={Santhanam, Rekha},
+   title={Sheaves and $K$-theory for $\Bbb F_1$-schemes},
+   journal={Adv. Math.},
+   volume={229},
+   date={2012},
+   number={4},
+   pages={2239--2286},
+}
+
+\bib{CGM}{article}{
+author={Crowley, C.}, 
+author={Giansiracusa, N.},
+author={Mundinger, J.},
+title={A module-theoretic approach to matroids},
+journal={preprint},
+date={2017},
+eprint={arXiv:1712.03440},
+}
+
+\bib{Dei}{article}{
+   author={Deitmar, Anton},
+   title={Remarks on zeta functions and $K$-theory over ${\bf F}_1$},
+   journal={Proc. Japan Acad. Ser. A Math. Sci.},
+   volume={82},
+   date={2006},
+   number={8},
+   pages={141--146},
+}
+
+\bib{D}{article}{
+author={Dyckerhoff, Tobias},
+title={Higher categorical aspects of Hall algebras},
+journal={preprint},
+%date={2015},
+eprint= {arXiv: 1505.06940},
+}
+
+\bib{DK}{article}{
+author={Dyckerhoff, Tobias},
+author={Kapranov, Mikhail},
+title={Higher Segal Spaces I},
+journal={preprint},
+%date={2012},
+eprint={arXiv: 1212.3563 },
+}
+
+\bib{EJS}{article}{
+author={Eppolito, Chris},
+author={Jun, Jaiung},
+author={Szczesny, M},
+title={Hopf algebras for matroids over hyperfields},
+journal={preprint},
+%date={2017},
+eprint={arXiv:1712.08903},
+}
+
+\bib{GKT3}{article}{
+author={Galvez, Imma},
+author={Kock, Joachim},
+author={Tonks, Andrew},
+title={Decomposition spaces, incidence algebras and Möbius inversion III: the decomposition space of Möbius intervals},
+journal={Adv. Math., to appear},
+eprint={arXiv:1512.07580},
+}
+
+\bib{GKT2}{article}{
+author={Galvez, Imma},
+author={Kock, Joachim},
+author={Tonks, Andrew},
+title={Decomposition spaces, incidence algebras and Möbius inversion II: completeness, length filtration, and finiteness},
+journal={Adv. Math., to appear},
+eprint={arXiv:1512.07577},
+}
+
+\bib{GKT1}{article}{
+author={Galvez, Imma},
+author={Kock, Joachim},
+author={Tonks, Andrew},
+title={Decomposition spaces, incidence algebras and Möbius inversion I: basic theory},
+journal={Adv. Math., to appear},
+eprint={arXiv:1512.07573},
+}
+
+\bib{Hek}{thesis}{
+author={Hekking, J.},
+title={Segal Objects in Homotopical Categories \& K-theory of Proto-exact Categories},
+type={Master's Thesis, Univ. of Utrecht},
+date={2017},
+eprint={https://www.universiteitleiden.nl/binaries/content/assets/science/mi/scripties/master/hekking_master.pdf},
+}
+
+
+
+\end{biblist}
+ \end{bibdiv}
+
+
+\address{\tiny DEPARTMENT OF MATHEMATICS AND STATISTICS, BOSTON UNIVERSITY, 111 CUMMINGTON MALL, BOSTON} \\
+\indent \footnotesize{\email{szczesny@math.bu.edu}}
+
+\end{document}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
