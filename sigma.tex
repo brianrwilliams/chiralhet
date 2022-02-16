@@ -1,0 +1,129 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{macros-brian}
+
+%\linespread{1.2} %for editing
+
+\addbibresource{references.bib}
+
+\begin{document}
+
+\title{$\sigma$-models in the BV formalism}
+\maketitle
+
+\section{The Riemannian $\sigma$-model} 
+
+Suppose that $(M,h)$ is a Riemannian manifold. 
+The way a physicist writes the action functional for the $\sigma$-model of maps $\phi \colon \Sigma \to M$ is
+\[
+\int_{\Sigma}  \phi \triangle \phi .
+\]
+Let us rewrite this in the first-order formalism. 
+Introduce a field $A \in \Omega^1(\Sigma, \phi^* \T_M^*)$ and consider the action
+\[
+\int_{\Sigma} A \d \phi - \frac12 \int_\Sigma h^{-1} (A, \star A).
+\]
+Here, $\star$ is the Hodge star operator on $\Sigma$ and $h^{-1}$ is dual to the metric $h$.
+
+\subsection{$L_\infty$ space}
+
+Let $(M, \fg_M)$ be the $L_\infty$ space with $\clie^\bu(\fg_M) \cong \Omega^\bu(M, J \ul{\CC})$. 
+There is a quasi-isomorphism
+\[
+j_\infty \colon C^\infty_M \to \clie^\bu(\fg_M) 
+\]
+induced by taking the $\infty$-jet of a smooth function. 
+
+Given any vector bundle $E \to M$ we obtain an $L_\infty$ $\fg_M$-module that we denote by the same symbol $E$. 
+There is an identification of $\Omega^\bu_M$-modules 
+\[
+\Omega^\bu(M , J E) = \clie^\bu(\fg_M ; E) 
+\]
+and hence a quasi-isomorphism 
+\[
+j_\infty \colon \cE \xto{\simeq} \clie^\bu(\fg_M ; E) .
+\]
+
+As an example, consider the bundle $E = {\rm Sym}^2 (\T^*_M)$. 
+At the level of $L_\infty$ spaces this is the $\fg_M$-module $\Sym^2(\fg^*_M[-1])$. 
+The metric $h$ defines a section $h^{-1}$ of ${\rm Sym}^2 (\T^*_M)$. 
+Thus, we can view 
+\[
+j_\infty h^{-1} \in \clie^\bu\left(\fg_M ; \Sym^2(\fg^*_M[-1]) \right) .
+\]
+
+\subsection{The BV model} 
+
+Given any local $L_\infty$ algebra $\cG$ together with a local cocycle 
+\[
+\alpha \in \cloc^\bu(\cG) 
+\]
+of cohomological degree zero we obtain a BV theory which we denote by
+\[
+\T^*_\alpha [-1] (\cG[1]) .
+\]
+The fields are $\cG[1] \oplus \cG^*[-2]$ and the action is 
+\[
+S_0 + \alpha
+\]
+where $S_0$ is the standard BF theory action. 
+
+Consider the following local $L_\infty$ algebra on $\Sigma$:
+\[
+\cG = C^\infty_\Sigma \otimes \fg_M \ltimes \Omega^1_\Sigma \otimes \fg_M^* [-2] ,
+\]
+We denote the elements by $(\phi, A)$. 
+Notice that the local $L_\infty$ structure is completely independent of the metric.
+We define a local cocycle $\alpha$ on $\cG$ by the formula
+\[
+\alpha (\phi, A) = \int_\Sigma A \d \phi + ?? + \int_\Sigma j_\infty h^{-1} (A \star A ; \phi) .
+\]
+
+\begin{dfn}
+The perturbative Riemannian $\sigma$-model of maps $\Sigma \to M$ (near the constant map) is the BV theory $\T^*_\alpha [-1](\cG)$ with $\cG$ and $\alpha$ as above. 
+\end{dfn}
+
+Since $\alpha$ depends on the inverse of the Riemannian metric, we have the following heuristic 
+\[
+\lim_{vol(M) \to \infty} \T^*_\alpha [-1](\cG) = \T^* [-1](\cG') .
+\]
+In other words, the large volume limit of the Riemannian $\sigma$-model is BF theory for (a different) local $L_\infty$ algebra $\cG'$. 
+
+\begin{eg}
+Let's consider a (non flat) example.
+We take $M$ to be affine space $\RR^2$ equipped with the metric 
+\[
+h_\lambda = \lambda e^{-y^2} (\d x^2 + \d y^2) 
+\]
+where $\lambda > 0$ is a parameter.
+
+In this case the $L_\infty$ space is simply $(\RR^2, \fg_{\RR^2} = \RR^2 [-1])$, where $\RR^2 [-1]$ is equipped with the trivial $L_\infty$ structure.
+Therefore, we can take as the fields
+\begin{align*}
+\phi_1, \phi_2 & \in C^\infty_\Sigma \\
+A_1 , A_2 & \in \Omega^1_\Sigma .
+\end{align*}
+The anti-fields are
+\begin{align*}
+\phi_1^+, \phi_2^+ & \in \Omega^2_\Sigma [-1] \\
+A_1^+ , A_2^+ & \in \Omega^1_\Sigma [-1] ,
+\end{align*}
+though, they will not appear in the action. 
+
+We read off the Taylor components of the inverse metric $h^{-1}$ as
+\[
+j_\infty h_\lambda^{-1} (A \star A ; \phi) = (A_i \star A_i) \sum_{n \geq 0} \frac{1}{n!} \phi^{2n} .
+\]
+
+Thus, the full BV action is 
+\[
+\int_\Sigma A_i \d \phi_i + \lambda^{-1} \sum_{n \geq 0} \frac{1}{2n!} \int_{\Sigma} (A_i \star A_i)  \phi^{2n} .
+\]
+The large volume limit corresponds to taking $\lambda \to 0$, in which case it is clear that we recover the standard BF type action.
+
+In this example, the local $L_\infty$ algebra $\cG'$ is simply the cochain complex 
+\[
+(C^\infty_\Sigma)^{\oplus 2} [-1]_{\phi_i} \xto{\d} (\Omega^1_\Sigma)^{\oplus 2} [-2]_{A_i^+} .
+\]
+\end{eg}
+\end{document}
